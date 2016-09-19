@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	body{
+		background:#35dc9b;
+	}
+	h1{
+		display:table;
+		margin:40px auto ;
+		color:#fff;
+		font:20px;
+		text-transform: uppercase;
+		letter-spacing: 3px;
+	}
+	form{
+		display:table;
+		margin:40px auto;
+	}
+	form label{
+		position: relative;
+		display: block;
+	}
+	form label input{
+		font:18px;
+		box-sizing: border-box;
+		display: block;
+		padding:20px;
+		width:300px;
+		margin-bottom: 20px;
+		outline: none;
+		transition: all .8s ease-in-out;
+	}
+	form label input::placeholder{
+		transition: all .8s ease-in-out;
+		color:#999;
+		font:18px;
+	}
+	form label input:focus,form label input.populated{
+		padding-top: 28px;
+		padding-bottom: 12px;
+		/*color:transparent;*/
+	}
+	form label input:focus::-webkit-input-placeholder {
+		color:transparent;
+	}
+	form label input.populated::-webkit-input-placeholder {
+		color:transparent;
+	}
+	form label input:focus form label input + span{
+		opacity: 1;
+		top:10px;
+	}
+	form label input:focus + span{
+		opacity: 1;
+		top:10px;
+	}
+	form label span{
+		color:#35dc9b;
+		font:13px;
+		position: absolute;
+		top:0;
+		left:20px;
+		opacity:0;
+		transition: all .8s ease-in-out;
+
+	}
+
+	 form input[type="submit"] {
+	    transition: all 0.2s ease-in-out;
+	    font: 18px Helvetica, Arial, sans-serif;
+	    border: none;
+	    background: #1aaf75;
+	    color: #fff;
+	    padding: 16px 40px;
+}
+
+</style>
+<body>
+	<h1>Placeholder</h1>
+	<form action="">
+		<label for="">
+			<input type="text" id='fname' placeholder='Namelll'/>
+			<span>Name</span>
+		</label>
+		<label for="">
+			<input type="text" placeholder="Emailuuu" />
+			<span>Email</span>
+		</label>
+		<input type="submit" value='Send'>
+	</form>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script>
+// 	$(function() {
+//   $('input').on('change', function() {
+//     var input = $(this);
+//     if (input.val().length) {
+//       input.addClass('populated');
+//     } else {
+//       input.removeClass('populated');
+//     }
+//   });
+  
+//   setTimeout(function() {
+//     $('#fname').trigger('focus');
+//   }, 500);
+// });
+</script>
+</html>
