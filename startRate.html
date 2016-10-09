@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+	<style>
+		
+		body{
+			background-color: lightblue;
+		}
+		.rating {
+			  text-align: center;
+			  margin-top: 120px;
+			  position: relative;
+			  width: 50%;
+			  float: left;
+			}
+
+			.hidden {
+			  opacity: 0;
+			}
+
+			.star {
+			  display: inline-block;
+			  margin: 5px;
+			  font-size: 30px;
+			  color: whitesmoke;
+			  position: relative;
+			}
+			.star.animate{
+				animation: stretch-bounce .5s ease-in-out;
+			}
+			.animate.hidden{
+				opacity:0;
+			}
+			.full{
+
+			}
+			.full:before{
+				font-family: fontAwesome;
+				display: inline-block;
+				content:"\f005";
+				position: relative;
+				float: right;
+				z-index: 2;
+			}
+			.half:before{
+				 font-family: fontAwesome;
+			     content: "\f089";
+			     position: absolute;
+			     float: left;
+			    z-index: 3;
+			}
+			.star-colour{
+				color: #ffd700;
+			}
+
+			@keyframes stretch-bounce {
+				  0% {
+				    -webkit-transform: scale(1);
+				  }
+				  25% {
+				    -webkit-transform: scale(1.5);
+				  }
+				  50% {
+				    -webkit-transform: scale(0.9);
+				  }
+				  75% {
+				    -webkit-transform: scale(1.2);
+				  }
+				  100% {
+				    -webkit-transform: scale(1);
+				  }
+			}
+
+	</style>
+</head>
+<body>
+	<div class="rating" data-vote="0">
+		<div class="star hidden">
+			<span class="full" data-value="0"></span>
+			<span class="half" data-value="0"></span>
+		</div>
+		<div class="star">
+			    <span class="full" data-value="1"></span>
+    			<span class="half" data-value="0.5"></span>
+    			<span class="selected"></span>
+		</div>
+		<div class="star">
+			    <span class="full" data-value="2"></span>
+    			<span class="half" data-value="1.5"></span>
+    			<span class="selected"></span>
+		</div>
+		<div class="star">
+			    <span class="full" data-value="3"></span>
+    			<span class="half" data-value="2.5"></span>
+    			<span class="selected"></span>
+		</div>
+		<div class="star">
+			    <span class="full" data-value="4"></span>
+    			<span class="half" data-value="3.5"></span>
+    			<span class="selected"></span>
+		</div>
+		<div class="star">
+			    <span class="full" data-value="5"></span>
+    			<span class="half" data-value="4.5"></span>
+    			<span class="selected"></span>
+		</div>
+		<div class="score">
+    		<span class="score-rating js-score">0</span>
+    		<span>/</span>
+    		<span class="total">5</span>
+  		</div>
+</div>
+	</div>
+</body>
+</html>

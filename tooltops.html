@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	html{
+		font-size:16px;
+	}
+	body {
+	  /*@include container(60%);*/
+		  font-family: 'lato';
+		  font-weight: 200;
+		  background: #F1C40F;
+		  font-size: 1.4em;
+		  line-height: 1.5em;
+	}
+	.tooltips{
+		position: relative;
+		color:#3b627e;
+
+	}
+	.tooltips:hover::before{
+		content:"";
+		border:solid transparent;
+		border-bottom-color:#4862A3;
+		border-width:10px;
+		position: absolute;
+		top:20px; 
+	}
+	.tooltips:hover::after{
+		content:attr(data-tooltip);
+		position: absolute;
+		min-width: 15em;
+		font-weight:100;
+		line-height:1.3em;
+		margin:0;
+		background: #4862A3;
+		color:#fff;
+		padding:15px;
+		border-radius: 5px;
+	    right: 10%;
+	    top: 40px;
+	    z-index: 1;
+	    font-size: .7em;
+	}
+
+	.wrap{
+		padding:20px;
+	}
+
+	.text-center{
+		background: #0066cc;
+		width:200px;
+		line-height: 40px;
+		border-radius: 5%;
+		text-align: center;
+	}
+	.text-center::after{
+		content:"";
+		position: absolute;
+
+	}
+
+
+
+	*,*:before,*:after{
+		box-sizing: border-box;
+		font-size:16px;
+	}
+	.btn{
+		padding-top: 80px;
+	}
+	.btn a{
+	  text-decoration:none;
+	  display: inline-block;
+	  position: relative;
+	  background-color: #0CBABA;
+	  color: #fff;
+	  font-size: 1.2rem;
+	  border-radius: 1000px;
+	  width: 200px;
+	  height: 60px;
+	  box-shadow: 0 2px 20px rgba(#000, 0.7), inset 0 1px rgba(#fff, 0.3);
+	  text-align: center;
+	  transition: background-color .5s, transform 100ms;
+	}
+	.btn-textwrap{
+		  position: absolute;
+		  width: 100%;
+		  height: 100%;
+		  left: 0;
+		  overflow: hidden;
+	}
+
+		.btn-text{
+		  position: absolute;
+		  width: 100%;
+		  height: 100%;
+		  left: 0;
+		  line-height: 60px;
+		  top:0;
+		  transition: top .5s;
+
+
+}
+  .btn-icon {
+    		  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+   transition: top .5s;
+    top: 100%;
+    background: url('https://cl.ly/0X3o100h2H0g/icon-download.svg') no-repeat center center;
+  }
+  .aa::before{
+  	content:attr(data-tool-tip);
+  	width:200px;
+  	height:40px;
+  	background-color: #eeb868;
+  	border-radius:.35em;
+  	line-height: 40px;
+  	bottom:90px;
+  	left:calc(50% - 80px);
+  	font-size:1rem;
+
+  }
+  .aa::after{
+  	content: '';
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #EEB868;
+    left: calc(50% - 10px);
+    bottom: 70px;
+  }
+
+    .aa::before,
+  .aa::after {
+    position: absolute;
+    opacity: 0;
+    transition: all .5;
+    visibility: hidden;
+  }
+
+
+	.aa:hover{
+		background: #01baef;
+
+	}
+	.aa:hover .btn-text{
+		top:-100%;
+	}
+	.aa:hover .btn-icon{
+		top:0;
+	}
+
+	.aa:hover::before{
+		opacity: 1;
+		visibility: visible;
+		bottom: 80px;
+	}
+	.aa:hover::after{
+		opacity: 1;
+		visibility: visible;
+		bottom: 60px;
+	}
+
+
+
+
+
+
+
+</style>
+<body>
+	<p>
+	hrer d d sssssss sss sss ss ss serf ggfsd dsght jikhghg rwev 
+	<span class='tooltips' data-tooltip='hahskv dsd sef dfg  res'>span</span>
+	dfghjk uii okig sdfefcv
+	</p>
+
+
+	<div class="wrap">
+		<div class="box pointer-bottom">
+			<p class="text-center">	bottom</p>
+		</div>
+	</div>
+
+	<div class="btn">
+		<a href="#" data-tool-tip='dd XXX xXX x' class="aa">
+			<span class="btn-textwrap">
+				<span class="btn-text">Download</span>
+				<span class="btn-icon"aria-hidden='true'></span>
+
+			</span>
+		</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.timeline{
+		list-style: none;
+		display:flex;
+		align-items: center;
+		justify-content:center;
+	}
+	.li{
+		transition: all .5s ease-in;
+	}
+	.timestamp{
+		margin-bottom: 20px;
+		padding:0px 40px;
+		display: flex;
+		flex-direction:column;
+		align-items: center;
+		font-weight: 100;
+	}
+	.status{
+		padding:0 40px;
+		display: flex;
+		justify-content: center;
+		border-top:2px solid #d6dce0;
+		position: relative;
+		transition: all .5s ease-in;
+	}
+	.status h4{
+		font-weight:600;
+	}
+	.status:before{
+		content:"";
+		width:25px;
+		height:25px;
+		background-color: white;
+		border-radius:25px;
+		border:1px solid #ddd;
+
+
+
+
+
+				top:-15px; 
+		left: 42%;
+		transition: all .5s ease-in;
+	}
+
+	.li.complete .status{
+		border-top:2px solid #66dc71;
+	}
+	.li.complete .status:before{
+		background-color: #66dc71;
+		border:none;
+		transition: all .5s ease-in;
+	}
+	.li.complete h4{
+		color:#66dc71;
+	}
+
+
+
+</style>
+<body>
+<ul class="timeline" id="timeline">
+	<li class="li complete">
+		<div class="timestamp">
+			<span class="author">
+				wssd kkks
+			</span>
+			<span class="date">11/15dd</span>
+		</div>
+		<div class="status">
+			<h4>Shift ss</h4>
+		</div>
+	</li>
+
+	<li class="li complete">
+    <div class="timestamp">
+      <span class="author">Aaron Rodgers</span>
+      <span class="date">11/15/2014<span>
+    </div>
+    <div class="status">
+      <h4> SIC Approval </h4>
+    </div>
+  </li>
+  <li class="li">
+    <div class="timestamp">
+      <span class="author">PAM Admin</span>
+      <span class="date">TBD<span>
+    </div>
+    <div class="status">
+      <h4> Shift Completed </h4>
+    </div>
+  </li>
+</ul>
+
+	
+</body>
+</html>
