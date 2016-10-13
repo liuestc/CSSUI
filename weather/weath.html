@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script>
+	$(function(){
+		get_jsonp();
+	})
+</script>
+<script>
+	// function callback(data){
+	// 	console.log(data);
+	// }
+	// $.ajax({
+	// 	type:'get',
+	// 	dataType:'jsonp',
+	// 	url:"http://v.juhe.cn/weather/index?callback=?",
+	// 	success:function(data){
+	// 		console.log(data);
+	// 	}
+	// })
+
+
+	function get_jsonp() {
+    //$("#result_fut").html('');
+    //$('#result_weather').html('正在查询中……');
+     
+    $.getJSON("http://v.juhe.cn/weather/index?callback=?", {
+        "cityname" : '上海',
+        "dtype" : "jsonp",
+        "key" : '3a094374512859e716f6741124032988'
+    }, function(data) {
+    	console.log(data);
+    })}
+</script>
+<script>
+	
+</script>	
+</body>
+</html>
