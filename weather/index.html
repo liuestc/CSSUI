@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script src='../common/js/jquery.js'></script>
+<script>
+	$(function(){
+
+		test='http://op.juhe.cn/onebox/weather/query?cityname=%E6%B8%A9%E5%B7%9E&key=3a094374512859e716f6741124032988 ';
+		//url= encodeURIComponent(test);
+
+		$.ajax({
+			url:test,
+			success:function(res){
+				console.log(res);
+			}
+		})
+	})
+</script>
+</html>

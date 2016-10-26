@@ -74,6 +74,64 @@
 				  }
 			}
 
+			.selected:before{
+				font-family: fontAwesome;
+				display: inline-block;
+				content: "\f005";
+				position: absolute;
+				top: 0;
+				left: 0;
+				transform: scale(1);
+				opacity: 1;
+				z-index: 1;
+			}
+			.selected.pulse:before{
+				transform: scale(3);
+				opacity: 0;
+			}
+			.selected.is-animated:before{
+				transition: 1s ease-out;
+
+			}
+
+
+			.score {
+				  font-family: arial;
+				  font-size: 20px;
+				  color: green;
+				  margin-top: 80px;
+				  margin-left: 50px;
+				}
+
+				.score-rating {
+				  /* vertical-align: sup; */
+				  top: -5px;
+				  position: relative;
+				  font-size: 150%;
+				}
+
+				.total {
+				  vertical-align: sub;
+				  top: 0px;
+				  position: relative;
+				  font-size: 100%;
+				}
+
+				.average {
+				  font-family: arial;
+				  font-size: 20px;
+				  color: indianred;
+				  position: absolute;
+				  top: 90%;
+				  left: 50%;
+				  transform: translate(-50%,-50%);
+				  text-align: center;
+				  }
+				  .average  .score-average {
+				    padding-top: 30px;
+				  }
+
+
 	</style>
 </head>
 <body>
@@ -83,36 +141,135 @@
 			<span class="half" data-value="0"></span>
 		</div>
 		<div class="star">
-			    <span class="full" data-value="1"></span>
+			<span class="full" data-value="1"></span>
     			<span class="half" data-value="0.5"></span>
     			<span class="selected"></span>
 		</div>
 		<div class="star">
-			    <span class="full" data-value="2"></span>
+			<span class="full" data-value="2"></span>
     			<span class="half" data-value="1.5"></span>
     			<span class="selected"></span>
 		</div>
 		<div class="star">
-			    <span class="full" data-value="3"></span>
+			<span class="full" data-value="3"></span>
     			<span class="half" data-value="2.5"></span>
     			<span class="selected"></span>
 		</div>
 		<div class="star">
-			    <span class="full" data-value="4"></span>
+			<span class="full" data-value="4"></span>
     			<span class="half" data-value="3.5"></span>
     			<span class="selected"></span>
 		</div>
 		<div class="star">
-			    <span class="full" data-value="5"></span>
+			<span class="full" data-value="5"></span>
     			<span class="half" data-value="4.5"></span>
     			<span class="selected"></span>
 		</div>
 		<div class="score">
-    		<span class="score-rating js-score">0</span>
-    		<span>/</span>
-    		<span class="total">5</span>
+	    		<span class="score-rating js-score">0</span>
+	    		<span>/</span>
+	    		<span class="total">5</span>
   		</div>
+  		<div class="average">
+		  <span class="text">Your average score is</span><div class=" score-average js-average"></div>
+		</div>
+  
 </div>
-	</div>
+
 </body>
+<script src="./common/js/jquery.js"></script>
+<script>
+var starClicked = false;
+
+$(function() {
+
+  $('.star').click(function() {
+
+    $(this).children('.selected').addClass('is-animated');
+    $(this).children('.selected').addClass('pulse');
+
+    var target = this;
+
+    setTimeout(function() {
+      $(target).children('.selected').removeClass('is-animated');
+      $(target).children('.selected').removeClass('pulse');
+    }, 1000);
+
+    starClicked = true;
+  })
+
+  $('.half').click(function() {
+    if (starClicked == true) {
+      setHalfStarState(this)
+    }
+    $(this).closest('.rating').find('.js-score').text($(this).data('value'));
+
+    $(this).closest('.rating').data('vote', $(this).data('value'));
+    // calculateAverage()
+    console.log(parseInt($(this).data('value')));
+
+  })
+
+  $('.full').click(function() {
+    if (starClicked == true) {
+      setFullStarState(this)
+    }
+    $(this).closest('.rating').find('.js-score').text($(this).data('value'));
+
+    $(this).find('js-average').text(parseInt($(this).data('value')));
+
+    $(this).closest('.rating').data('vote', $(this).data('value'));
+    // calculateAverage()
+
+    console.log(parseInt($(this).data('value')));
+  })
+
+  $('.half').hover(function() {
+    if (starClicked == false) {
+      setHalfStarState(this)
+    }
+
+  })
+
+  $('.full').hover(function() {
+    if (starClicked == false) {
+      setFullStarState(this)
+    }
+  })
+
+})
+
+//pre parent node addClass && next parent node removeClass
+function updateStarState(target) {
+  $(target).parent().prevAll().addClass('animate');
+  $(target).parent().prevAll().children().addClass('star-colour');
+
+  $(target).parent().nextAll().removeClass('animate');
+  $(target).parent().nextAll().children().removeClass('star-colour');
+}
+
+function setHalfStarState(target) {
+  $(target).addClass('star-colour');
+  $(target).siblings('.full').removeClass('star-colour');
+  updateStarState(target)
+}
+
+function setFullStarState(target) {
+  $(target).addClass('star-colour');
+  $(target).parent().addClass('animate');
+  $(target).siblings('.half').addClass('star-colour');
+
+  updateStarState(target)
+}
+
+// function calculateAverage() {
+//   var average = 0
+
+//   $('.rating').each(function() {
+//     average += $(this).data('vote')
+//   })
+
+//   $('.js-average').text((average/ $('.rating').length).toFixed(1))
+// }
+</script>
 </html>

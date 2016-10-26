@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="content"></div>
+
+
+<script src='../common/js/jquery.js'></script>
+<script>
+//$( "#content" ).load('http://en.wikipedia.org/wiki/Special:Random');
+$(function(){
+	get_WIKI()
+})
+
+function get_WIKI(){
+$.ajax( {
+    url: 'http://en.wikipedia.org/wiki/Special:Random',
+   // data: queryData,
+    dataType: 'json',
+    type: 'POST',
+    headers: { 'Api-User-Agent': 'Example/1.0' },
+    success: function(data) {
+       // do something with data
+    }
+} );
+
+}
+</script>	
+</body>
+</html>

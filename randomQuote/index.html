@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<style>
+		h4{
+
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="jumbotron content">
+	
+		<h2 class="quote text-center"></h2>
+		<h4 class="author"></h4>
+	
+	</div>
+	<div class="btn">
+		<button type="button" id='change' class='btn btn-primary'>toggle</button>
+	</div>
+</body>
+<script src='../common/js/jquery.js'></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script >
+var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
+
+function getQuote() {
+	$.ajax({
+		url: 'http://api.hitokoto.cn/?c=b',
+		success: function(res) {
+			r = JSON.parse(res);
+			author ='----' +r.from;
+			quote = r.hitokoto;
+			$(".quote").animate({
+				opacity:0
+			},500,function(){
+				   $(this).animate({
+            					opacity: 1
+         					 }, 500);
+				$(this).html(quote) ;  
+			})
+
+			$(".author").animate({
+			opacity:0
+			},500,function(){
+				   $(this).animate({
+            					opacity: 1
+         					 }, 500);
+				$(this).html(author) ;  
+			})
+		}
+	})
+}
+$(function() {
+getQuote();
+	$('#change').click(getQuote)
+
+})
+
+</script>
+</html>
