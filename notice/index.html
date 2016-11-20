@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>试用申请</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+</head>
+<body>
+<div class="notice">
+    NOTICE
+</div>
+<script src="build/js/index.bundle.js"></script>
+<script src='./src/zepto.js'></script>
+<!-- <script src="build/js/index.bundle.js"></script> -->
+<script>
+    $.ajax{
+        type:"GET",
+        url:"data.json",
+        dataType:"json",
+        success:function(res){
+            console.log(res);
+        }
+    }
+</script>
+</body>
+</html>

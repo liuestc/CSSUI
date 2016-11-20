@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.content{
+			position: relative;
+			top:100px;
+			left:100px;
+			height:30px;
+			width:100px;
+			text-align: center;
+			border: 4px solid #f55;
+			overflow: hidden;
+
+		}
+		.content li{
+			position: relative;
+			list-style-type:none;
+			width:100px;
+			height:30px;
+			line-height: 30px;
+			background-color: #eee; 
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+        <ul class="list">
+            <li>test1</li>
+            <li>test2</li>
+            <li>test3</li>
+            <li>test4</li>
+            <li>test5</li>
+        </ul>
+    </div>
+</body>
+<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<!-- <script src="http://cdn.bootcss.com/jquery/3.1.1/core.js"></script> -->
+<script>
+   var ul = $('.list'),
+        li = ul.children('li'),
+        liHeight = li.height(), //取得单个li高度
+        len = li.length;
+    //取得li总数，注意li的index是从0开始的，所以len也就相当于最后一个li的index+1
+    ul.height(len * liHeight + 'px'); //动态设置ul总高度
+
+    var index = 0; //索引
+    var timer; //定时器	
+    $('.content').on({
+    	mouseenter:function(){
+    		clearInterval(timer);
+    	},
+    	mouseleave:function(){
+    		timer=setInterval(play,1000)
+    	}
+    }).trigger('mouseleave');
+    function play(){
+    	index++;
+    	if(index==len){
+    		li.first().css("top",len*liHeight);
+    	}
+
+    	// ul.animate(
+    	// 	{"marginTop":-index*liHeight+"px"},
+    	// 	500, function(){
+    	// 		// if(index==len){
+    	// 		// 	index=0;
+    	// 		// 	ul.css("marginTop",0);
+    	// 		// 	li.first().css("top",0)
+    	// 		// }
+    	// 		console.log(111);
+    	// 	})
+
+    	 ul.animate({
+                'marginTop': -index * liHeight + 'px'
+            },
+            500,
+            function() { //回调函数，每次滚动后执行
+                if (index === len) { //index为len时（即滚动到了最后被拉下来的li时）
+                    index = 0; //index复原
+                    ul.css('marginTop', 0); //ul复原
+                    li.first().css('top', 0); //第一个li回到原位
+                };
+            })
+
+    	}
+    
+
+
+</script>
+</html>
