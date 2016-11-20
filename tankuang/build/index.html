@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>试用申请</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+</head>
+<style>
+    *,div,p,span{
+    padding:0;
+    margin:0;
+}
+
+.title{
+    margin:5px;
+    font-weight:bold;
+    padding:10px 0;
+    font-size:18px;
+    color:#000;
+}
+
+.content{
+    background-color: #f8f8f8;
+    /*padding:5px;*/
+    overflow: hidden;
+    margin:5px;
+
+}
+
+.content-top>.left,.right{
+    float: left
+}
+
+.left{
+    width:50%;
+    padding-left:10px;
+}
+.left>p{
+    padding:5px;
+    color:#333;
+    height:34px;
+    line-height: 34px;
+    font-size:12px;
+}
+.left span{
+    color:#f30;
+    font-weight: bold;
+}
+
+.right{
+    width:40%;
+    text-align: center;
+}
+
+.num{
+    color:#f30;
+    font-size:34px;
+    padding-top:20px;
+    margin-bottom: 5px;
+    font-weight:bold;
+
+}
+
+.people{
+    font-size: 12px;
+}
+
+
+
+.finished{
+    text-align: center;
+    height:44px;
+    line-height: 44px;
+    background-color: #16a8ec;
+    color:#fff;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration:none;
+    display: block;
+    margin:5px;
+    background-repeat: no-repeat;
+}
+
+.content-bottom{
+    clear:both;
+    background-image:-webkit-linear-gradient(90deg, #e5e5e5, #e5e5e5 50%, #f8f8f8 50%);
+    background-size: 100% 1px;
+
+    padding:15px 0;
+    margin:10px 15px 0 15px;
+}
+
+</style>
+<body>
+<div class="cl_head">
+    <div class="title">试用活动 | 新一代小米智能蓝牙车充</div>
+    <div class="content">
+        <div class="content-top">
+        <div class="left">
+            <p class="price">市场价格：<span>99元</span></p>
+            <p class="qul">提供数量：<span>20份</span></p>
+            <p class="loc">活动城市：<span>全国</span></p>
+        </div>    
+            <div class="right">
+                <p class="num">7200</p>
+                <p class="people">人已申请</p>
+            </div>
+        </div>
+    <!-- <div class="clear"></div> -->
+    <div class="content-bottom">
+            距离申请结束：<span id="time"></span>
+    </div>
+        
+    </div>
+
+
+
+    <a class="finished">已结束</a>
+
+</div>
+<script src="./src/alert.js"></script>
+<script src="./src/alert.js"></script>
+<script>
+
+    function startTime(){
+        var m_1122=new Date(2016,10,22);
+        var msday=24*60*60;
+        var today=new Date();
+       var cha=(m_1122.getTime()-today.getTime())/1000
+       var day=Math.floor((cha)/msday);
+       var hour=Math.floor((cha-day*msday)/3600);
+       var min=Math.floor((cha-day*msday-hour*3600)/60);
+       var second=Math.floor(cha-day*msday-hour*3600-min*60);
+        var  str= day+"天"+hour+"时"+min+"分"+second+"秒";
+
+     document.getElementById("time").innerHTML=str;
+        t=setTimeout("startTime()",500)
+    }
+
+    function checkTime(time){
+        if(time<10){
+            return "0"+time
+        }
+        else{
+            return time;
+        }
+    }
+
+
+
+    startTime();
+
+    $(".finished").on("click",function(){
+         Alert.push("test");
+    })
+
+
+    // function interval(end_time){
+    //     var date,time,hour,min,sec;
+    //     var inter=setInterval(function(){
+    //         date=new Date();
+    //         time=end_time-Math.floor(date.getTime()/1000);
+    //         if(time<0){
+    //             $(".finnished").addClass("disable");
+    //             $(".finished").text("已结束")；
+    //             window.clearInterval(inter);
+
+    //             str="0时 0 分 0 秒"；
+    //           document.getElementById("time").innerHTML=str;
+
+    //         }
+
+
+    //     },1000)
+    // }
+</script>
+<!-- <script src="build/js/index.bundle.js"></script> -->
+</body>
+</html>
