@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*,div,ul,li{
+		margin:0;
+		padding: 0;
+		list-style: none;
+	}
+	
+	ul{
+		margin:0 auto;
+		width:200px;
+	}
+	li{
+		height:30px;
+		line-height: 30px;
+		width:100px;
+		border:1px solid red;
+		border-radius: 5px;
+		text-align: center;
+		margin-bottom:5px;
+	}
+	li:nth-child(odd){
+		background-color: #ccc;
+	}
+	.donghua{
+		animation: move 1s ease;
+		animation-fill-mode:forwards; 
+		transform: translateY(100%) scale(.8);
+
+	}
+	@keyframes move{
+		0%{
+			transform: translateY(100%) scale(.8);
+		}
+		100%{
+			transform: translateY(0%) scale(1);
+		}
+	}
+</style>
+<body>
+	<div class="content">
+		<ul class='list'>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+	</div>
+</body>
+<script src='../common/js/jquery.js'></script>
+<script>
+	window.onscroll=function(){
+	var scrollTop=document.body.scrollTop;
+	var client=document.documentElement.clientHeight;
+	var heightAll=document.body.scrollHeight;
+		if(scrollTop+client>=heightAll){
+		    var  lastLi=$("ul li:last-child");
+		    console.log(lastLi)
+		    	 liVal=parseInt(lastLi.text())+1;
+		    	 // console.log(parseInt(liVal)+1);
+		    	 liClone=lastLi.clone().text(liVal);
+		    	 console.log(liClone.text());
+		    $(".list").append(liClone);
+		    $("ul li:last-child").addClass('donghua');
+		}
+	}
+</script>
+</html>

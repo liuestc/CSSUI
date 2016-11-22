@@ -66,20 +66,9 @@
     		li.first().css("top",len*liHeight);
     	}
 
-    	// ul.animate(
-    	// 	{"marginTop":-index*liHeight+"px"},
-    	// 	500, function(){
-    	// 		// if(index==len){
-    	// 		// 	index=0;
-    	// 		// 	ul.css("marginTop",0);
-    	// 		// 	li.first().css("top",0)
-    	// 		// }
-    	// 		console.log(111);
-    	// 	})
-
     	 ul.animate({
                 'marginTop': -index * liHeight + 'px'
-            },
+            },  
             500,
             function() { //回调函数，每次滚动后执行
                 if (index === len) { //index为len时（即滚动到了最后被拉下来的li时）

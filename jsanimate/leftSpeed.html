@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.blue{
+		width:200px;
+		height:140px;
+		left:-200px;
+		position: relative;
+		background: blue;
+
+	}
+	.btn{
+		position: absolute;
+		left: 200px;
+		background: red;
+		top:50px;
+		width:30px;
+		height:20px;
+	}
+</style>
+<body>
+	<div class="content">
+		<div class="blue" id='blue'>
+			<div class="btn" id='btn'></div>
+		</div>
+	</div>
+</body>
+<script>
+	var btn=document.getElementById('btn');
+	var blue=document.getElementById('blue');
+
+	btn.onclick=function(){
+
+		console.log(blue.offsetLeft)
+		if(blue.offsetLeft==-200){
+			moveOut()
+		}
+		else{
+			moveBack();
+		}		
+	}
+
+	var timer=null;
+	function moveOut(){
+		console.log(111)
+		clearInterval(timer);
+		timer=setInterval(function(){
+			if(blue.offsetLeft==0){
+				clearInterval(timer);
+			}
+			else{
+				blue.style.left=blue.offsetLeft+5+"px";
+				console.log(blue.offsetLeft)
+			}
+		},30)
+	}
+	function moveBack(){
+		console.log(222)
+		timer=setInterval(function(){
+			if(blue.offsetLeft==-200){
+				clearInterval(timer);
+			}
+			else{
+				blue.style.left=blue.offsetLeft-5+"px";
+				// console.log(blue.offsetLeft);
+			}
+		},30)
+	}
+
+</script>
+</html>

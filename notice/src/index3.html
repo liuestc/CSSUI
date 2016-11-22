@@ -45,14 +45,28 @@
 <script>
 var lih = $('.content').height();
 var i = 1;
-setInterval(function() {
-    //当跳到最后一条时，让top瞬间变为0，对于人眼很难看的出来的，这样就实现了无限的滚动
+
+console.log(22);
+$(".content").on({
+	"mouseenter":function(){
+		// clearInterval(time)
+	}
+},	{"mouseleave":function(){
+	// play();
+	time=setInterval(play,2000)
+}
+}
+).trigger('mouseleave');
+
+function play(){
+console.log(1);
     if (i >= 4) {
          i = 1
          $('.list').css('top',0);
     };
     $('.list').animate({top:-lih*i});
     i++;
-}, 2000)
+
+}
 </script>
 </html>
