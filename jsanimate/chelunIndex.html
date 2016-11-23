@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+		*,body,div,span,p{
+			margin:0;
+			padding:0;
+		}
+
+		body { 
+			/*background-color:#0099cc; */
+			/*height: 100%;*/
+			 }
+
+		.content{
+		    background-color: #0099cc;
+		    overflow: auto;
+		    width: 100%;
+		    position: fixed;
+		    height: 0%;
+		    opacity:.8;
+		    transition: all .5s ease;
+		}
+		.appear{
+			height:100%;
+			opacity:1;
+		}
+		.bar{
+			height:40px;
+		}
+		#nav-toggle { 
+			cursor: pointer; 
+			padding: 10px 35px 16px 0px;
+			float: right;
+			margin-top:10px;
+			/*position: absolute;*/
+			top:10px;
+			right:20px;
+			z-index:10;
+		}
+		#nav-toggle::after{
+			content: ".";
+			visibility: hidden;
+			display: block;
+			clear: both;
+            height:0;
+            overflow:hidden;
+		}
+		.clear{
+			clear: both;
+		}
+		#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after{
+			cursor: pointer;
+			border-radius: 1px;
+			height: 5px;
+			width: 35px;
+			background: white;
+			position: absolute;
+			display: block;
+			content: '';
+			background: #0066cc;
+		}
+		#nav-toggle span:before {
+		    top: -10px; 
+		}
+		#nav-toggle span:after {
+		    bottom: -10px;
+		}
+
+		#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after{
+		  	transition: all 500ms ease-in-out;
+		}
+		#nav-toggle.active span {
+		    background-color: transparent;
+		}
+		#nav-toggle.active span:before, #nav-toggle.active span:after {
+		    top: 0;
+		}
+		#nav-toggle.active span:before {
+		    transform: rotate(45deg);
+		    background: red;
+		}
+		#nav-toggle.active span:after {
+		    transform: rotate(-45deg);
+		    background: red;
+		}
+		div.list{
+			width:60%;
+			clear: both;
+			margin:0 auto;
+		}
+
+		.list>ul>li{
+			list-style: none;
+			padding:10px;
+			border-bottom: 1px solid #fff;
+			color:#fff;
+		}
+</style>
+
+<body>
+	<div class="bar">
+		<a id="nav-toggle" href="#"><span></span></a>
+	</div>
+	<div class="content" id='content'>
+		
+		<div class="list" id='list'>
+			<ul>
+				<li>首页</li>
+				<li>首页2</li>
+				<li>首页3</li>
+				<li>首页4</li>
+				<li>首页5</li>
+				<li>首页6</li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script src='../common/js/jquery.js'></script>
+<script>
+	var list=document.getElementById('content');
+	$( "#nav-toggle" ).on( "click", function() {
+    	this.classList.toggle( "active" );
+    	// $('.content').addClass("appear");
+    	// $('.content').classList.toggle( "appear" );
+    	list.classList.toggle('appear');
+    	console.log(list.classList)
+  	});
+  	// $(.content)
+</script>
+</html>
