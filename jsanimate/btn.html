@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.waves{
+			position: relative;
+			cursor:pointer;
+			display:inline-block;
+			overflow: hidden;
+			text-align: center;
+			z-index:1;
+		}
+
+		.wave .waves-aniamtion{
+			position:absolute;
+			border-radius: 50%;
+			width:25px;
+			height:25px;
+			opacity: 0;
+			background: rgba(255,255,255,.3);
+			transition:all .7s ease-out;
+			transition-property: transform ,opacity,-webkit-transform;
+			-webkit-transform:scale(0);
+			transform:scale(0);
+			/*ponieter-event:; */
+		}
+	</style>
+</head>
+<body>
+	<a href="" class='waves ts-btn'>Press me</a>
+</body>
+<script src='../common/js/jquery.js'></script>
+<script>
+
+</script>
+</html>

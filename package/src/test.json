@@ -1,0 +1,9 @@
+{
+	"name":"jundong",
+	"age":22,
+	"data":{
+		"w":"rrrr",
+		"e":"rtth"
+	},
+	"data2":[{"hello":"world"},{"test":"demo"}]
+}
