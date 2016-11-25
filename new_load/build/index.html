@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>话题详情</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="css/index.css?15899be3b1b"/>
+    <script>
+        (function () {
+            var designWidth = 640, baseSize = 100;
+            var resize = function () {
+                document.documentElement.style.fontSize = window.innerWidth * baseSize / designWidth + 'px';
+            };
+            (window.onresize = resize) && resize();
+        })();
+        window['CHELUN_SHOW_MENU_ITEMS'] = ['menu:refresh', 'menu:share:wxMessage', 'menu:share:wxTimeline'];
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?9f9fd730557c9f615b60a2133fb7616f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+    <div class="slik">车主必备</div>
+    <img src="img/main.jpg" alt="">
+    <div class="content">
+        <p class='apple' id='btn'><img src="img/apple2.png" alt=""><a class="download" href="">免费下载</a></p>
+        <p class='first'><span>多</span>平均每秒有37个处主正在下载</p>
+        <p><span>快</span>限行提醒，新违章智能推送</p>
+        <p><span>准</span>违章信息同步更新，准确专业</p>    
+        <p><span>广</span>免费查询、覆盖全国400+城市</p>
+
+        <div class="market">
+            <p class='info'>车轮查违章是以下应用市场认证安全优质应用</p>
+            <div class='first-info'>
+                <img src="img/360.jpg" alt="">
+                <p>腾讯应用宝</p>  
+            </div>
+            <div>
+                <img src="img/tx.jpg" alt="">
+                <p>360手助</p>  
+            </div>
+            <div>
+                <img src="img/baidu.jpg" alt="">
+                <p>百度手助</p>  
+            </div>
+            <div>
+                <img src="img/wdj.jpg" alt="">
+                <p>豌豆荚</p>  
+            </div>
+        </div>
+
+    </div>
+<script src="js/index.bundle.js?15899be3b1b"></script>
+<script>
+    var btn=document.getElementById('btn');
+    console.log(btn);
+    // btn.onclick(function(){
+    //     console.log(111);
+    // })
+    btn.addEventListener("click",function(e){
+        // e.stopPropagation(e); 不用阻止冒泡
+        e.preventDefault();
+        // console.log(btn);
+    },false)
+
+</script>
+</body>
+</html>
