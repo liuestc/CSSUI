@@ -127,8 +127,14 @@
 	var list=document.getElementById('content');
 	$( "#nav-toggle" ).on( "click", function() {
     	this.classList.toggle( "active" );
-    	list.classList.toggle('appear');	
+
+    	// $('.content').addClass("appear");
+    	// $('.content').classList.toggle( "appear" );
+    	list.classList.toggle('appear');
+    	
     	console.log(list.classList)
   	});
+  	// $(.content)
+
 </script>
 </html>
