@@ -57,9 +57,9 @@ gulp.task('scss', function () {
 });
 
 gulp.task('css', ['scss'], function () {
-    return gulp.src('./css/*.css')
-        .pipe(gulpCssnano())
-        .pipe(gulp.dest('./build/css/'));
+    // return gulp.src('./css/*.css')
+    //     .pipe(gulpCssnano())
+    //     .pipe(gulp.dest('./build/css/'));
 });
 
 gulp.task('babel', function () {
@@ -85,9 +85,9 @@ gulp.task('js', ['webpack'], function () {
 
 
 gulp.task('image', function () {
-    return gulp.src('./img/**')
-        .pipe(gulpImage())
-        .pipe(gulp.dest('./build/img/'));
+    // return gulp.src('./img/**')
+    //     .pipe(gulpImage())
+    //     .pipe(gulp.dest('./build/img/'));
 });
 
 gulp.task('html', function () {
@@ -105,7 +105,6 @@ gulp.task('macro', ['css', 'js', 'image', 'html'], function () {
     return stream.pipe(gulp.dest('./build/'));
 });
 
-//这里映射到dist .pipe(gulp.dest(config.release));
 gulp.task('default', ['macro'], function () {
     return gulp.src('./build/**')
         .pipe(gulp.dest(config.release));

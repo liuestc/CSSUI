@@ -7,6 +7,8 @@ html{
 }
 body{
 	height:100%;
+	width:100%;
+	overflow-x:hidden;
 }
 .slik{
     color: #fff;
@@ -29,6 +31,8 @@ img{
 	text-decoration: none;
     color: #fff;
     padding: 0.2rem 0;
+    font-size:.3rem;
+
 }
 
 
@@ -60,7 +64,7 @@ img{
 }
 .content{
 	background-size:100% 100%;
-	font-size:.28rem;
+	font-size:.24rem;
 	position:relative;
 }
 .content p{

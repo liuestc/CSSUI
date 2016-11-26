@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>话题详情</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="css/index.css?1589435bb29"/>
+    <script>
+        (function () {
+            var designWidth = 640, baseSize = 100;
+            var resize = function () {
+                document.documentElement.style.fontSize = window.innerWidth * baseSize / designWidth + 'px';
+            };
+            (window.onresize = resize) && resize();
+        })();
+        window['CHELUN_SHOW_MENU_ITEMS'] = ['menu:refresh', 'menu:share:wxMessage', 'menu:share:wxTimeline'];
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?9f9fd730557c9f615b60a2133fb7616f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+
+<div class="container">
+      <div class="live-video">
+        <p class="left_ban">
+            <img src="./img/left.jpg" id="live_left">
+        </p>
+        <p class="video_play">
+            <img src="./img/live.jpg" id="live">
+        </p>
+        <p class="right_ban">
+            <img src="./img/right.jpg" id="live_right">
+        </p>
+    </div>
+    <div class="middle">
+        <div class="m-top"></div>
+        <div class="bar" id="topic_id">
+            <img class="head-img topic" src=""/>
+            <span class="name" id="nick"></span> <span class="lev"></span>
+            <img class="car-img topic" src=""/>
+        </div>
+        <div class="content">
+            <p class="title"></p>
+            <p id="topic_content"></p>
+            <p class="img" id="topic_img">
+            <p class="footer">
+                <span class="time" id="topic_time"></span>
+                <span id="topic_address" class="local"></span>
+                <span class="active"></span>
+            </p>
+        </div>
+
+        <div class="comment">
+            <p class="headline">评论</p>
+            <ul id="comment_list"></ul>
+
+
+            <div class="more">查看更多评论</div>
+            <div class="open-chelun">
+                <a href="http://chelun.com/url/rfcKLg">打开车轮社区，查看更多评论
+                    <span class="arrow"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="m-bottom"></div>
+    </div>
+    <div class="footer-btns">
+        <div id="commit">
+            <input type="text" id="writeMes" placeholder="写评论..." name=""/>
+            <span id="add_icon"><a href="#1"><img src="img/write.png"></a></span>
+            <span id="share"><img src="img/share.png"></span>
+        </div>
+
+        <div class="download">
+            <p class="icon"><img src="img/icon.png"></p>
+            <div class="down-mid">
+                <p class="app-name">车轮社区</p>
+                <p class="down-sub">下载参与更多讨论</p>
+            </div>
+            <p class="down-btn"><a href="http://chelun.com/url/rfcKLg">下载APP</a></p>
+            <span id="close">
+                <img src="./img/close.png">
+            </span>
+        </div>
+
+        <div class="reply">
+            <div class="reply-head">
+                <span class="cancel"></span>
+                <span id="reply_floor">回复楼主</span>
+                <span class="push" id="push_sub">发表</span>
+            </div>
+            <div class="reply-input">
+                <textarea name="" id="writeText" autofocus placeholder="请输入回复内容"></textarea>
+                <div class="cityname"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="success">
+        <img src="./img/succ.png">
+        <span>回复成功</span>
+    </div>
+
+</div>
+
+
+<script src="js/index.bundle.js?1589435bb29"></script>
+<!-- <script src="src/index.js"></script> -->
+</body>
+</html>

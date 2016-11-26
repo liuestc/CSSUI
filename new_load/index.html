@@ -28,7 +28,7 @@
     <div class="slik">车主必备</div>
     <img src="img/main.jpg" alt="">
     <div class="content">
-        <p class='apple'><img src="img/apple2.png" alt=""><a class="download" href="">免费下载</a></p>
+        <p class='apple' id='btn'><img src="img/apple2.png" alt=""><a class="download" href="">免费下载</a></p>
         <p class='first'><span>多</span>平均每秒有37个处主正在下载</p>
         <p><span>快</span>限行提醒，新违章智能推送</p>
         <p><span>准</span>违章信息同步更新，准确专业</p>    
@@ -57,10 +57,18 @@
     </div>
 <script src="js/index.bundle.js?__VERSION"></script>
 <script>
-    // var btn=document.getElementsByClassName('apple');
-    // btn.addEventListener("click",function(){
-    //     console.log(btn);
-    // },false)
+
+    var btn=document.getElementById('btn');
+    console.log(btn);
+    // btn.onclick(function(){
+    //     console.log(111);
+    // })
+    btn.addEventListener("click",function(e){
+        // e.stopPropagation(e); 不用阻止冒泡
+        e.preventDefault();
+        // console.log(btn);
+    },false)
+
 
 </script>
 </body>

@@ -105,7 +105,6 @@ gulp.task('macro', ['css', 'js', 'image', 'html'], function () {
     return stream.pipe(gulp.dest('./build/'));
 });
 
-//这里映射到dist .pipe(gulp.dest(config.release));
 gulp.task('default', ['macro'], function () {
     return gulp.src('./build/**')
         .pipe(gulp.dest(config.release));
