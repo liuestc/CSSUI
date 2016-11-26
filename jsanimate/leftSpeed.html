@@ -5,6 +5,14 @@
 	<title>Document</title>
 </head>
 <style>
+
+	*,div,p{
+		margin:0;
+		padding:0;
+	}
+	.content>div{
+		margin-bottom: 20px;
+	}
 	.blue{
 		width:200px;
 		height:140px;
@@ -21,21 +29,54 @@
 		width:30px;
 		height:20px;
 	}
+
+	#opacity{
+		width:100px;
+		height:100px;
+		border-radius: 50%;
+		background: red;
+		opacity: .5;
+		filter: alpha(opacity:50);
+	}
+
+	.list>ul>li{
+		list-style: none;
+		width:200px;
+		height:50px;
+		background: blue;
+		margin-bottom: 40px;
+	}
 </style>
 <body>
 	<div class="content">
 		<div class="blue" id='blue'>
 			<div class="btn" id='btn'></div>
 		</div>
+
+		<div id="opacity">
+			
+		</div>
+		
+		<div class="list">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+
+
 	</div>
 </body>
 <script>
 	var btn=document.getElementById('btn');
 	var blue=document.getElementById('blue');
+	var opa=document.getElementById('opacity');
 
 	btn.onclick=function(){
 
-		console.log(blue.offsetLeft)
+		// console.log(blue.offsetLeft)
 		if(blue.offsetLeft==-200){
 			moveOut()
 		}
@@ -71,5 +112,57 @@
 		},30)
 	}
 
+	opa.onmouseover=function(){
+		moveStart(5,100)
+	}
+	opa.onmouseout=function(){
+		moveStart(-5,50)
+	}
+
+	var time=null;
+	var num=50;
+	function moveStart(speed,target){
+
+		clearInterval(time);
+		time=setInterval(function(){
+			if(target==num){
+				console.log("1");
+				clearInterval(time);
+			}
+			else{
+				console.log(num);
+				num+=speed;
+				opa.style.filter="alpha(opacity"+num+")";
+				opa.style.opacity=num/100;
+			}
+		},30);
+	}
+
+
+//=====li动画  document.getElementsByTagName
+	var liList=document.getElementsByTagName("li");
+	var len=liList.length;
+	for(var i=0;i<len;i++){
+		liList[i].time=null;
+		liList[i].onmouseover=function(){
+			liMove(this,300)
+		}
+		liList[i].onmouseout=function(){
+			liMove(this,200);
+		}
+	}
+	function liMove(_this,target){
+		clearInterval(_this.time);
+		_this.time=setInterval(function(){
+			var speed=(target-_this.offsetWidth)/5;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(_this.offsetWidth===target){
+		        clearInterval(_this.timer);
+		    }
+		    else{
+		        _this.style.width=_this.offsetWidth+speed+'px';
+		    }
+		},30)
+	}
 </script>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function(obj,attrClass,cb){
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			for(attr in attrClass){
+				//判断是否完成，判断attr是否是opacity属性，如果是的话乘100.不是的话得到他的值
+				if((attr==="opacity")?getStyle(obj,attr)*100:getStyle(obj,attr)===attrClass[attr]){
+					isComplete=true;
+					continue;
+				}
+				isComplete=false;
+				if(attr=='opacity'){
+					var speed=(attrClass(attr)-getStyle(obj,attr))/10;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					obj.style[attr]=(getStyle(obj,attr)*100+speed)/100;
+				}
+				else{
+					var speed=(attrClass[attr]-getStyle(obj,attr))/10
+					obj.style[attr]=getStyle(obj,attr)+speed+'px';
+				}
+			}
+			if(isComplete=true){
+				clearInterval(obj.time);
+				if(cb){
+					cd(obj);
+				}
+			}
+		},500)
+	}
+</script>
+</html>
