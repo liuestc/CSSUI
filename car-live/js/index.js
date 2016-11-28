@@ -11,6 +11,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var $ = require('./zepto');
 var React = require('react');
 var ReactDOM = require('react-dom');
+//import('../css/index.css');
 
 var test = document.getElementById('test');
 var host = /h5.chelun.com/.test(window.location.host) ? '//chelun.eclicks.cn' : '//community.dev.chelun.com';
@@ -25,7 +26,8 @@ var Test = function (_React$Component) {
 
         _this.state = {
             topic: "",
-            user: ""
+            user: "",
+            post: ''
         };
         return _this;
     }
@@ -60,6 +62,8 @@ var Test = function (_React$Component) {
                     var id = 1;
                     var tid = res.data.tid;
 
+                    // console.log(res);
+
                     $.ajax({
                         type: 'GET',
                         url: host + '/topic/topic_get',
@@ -72,78 +76,126 @@ var Test = function (_React$Component) {
                         dataType: 'json',
                         success: function success(res) {
 
+                            data.topic = res.data.topic;
+                            data.user = res.data.user;
                             _this2.setState({
                                 topic: res.data.topic,
                                 user: res.data.user
                             });
-                            console.log(res);
                             // console.log(this.state.DATA.data.forum.affiche);
+                        }
+                    });
+
+                    var data = {
+                        topic: "",
+                        user: "",
+                        post: ""
+                    };
+
+                    var param = {
+                        platform: 'web',
+                        ac_token: "",
+                        tid: tid,
+                        limit: 8,
+                        desc: 1
+                    };
+                    //get Post
+                    $.ajax({
+                        type: 'POST',
+                        url: host + '/post/byctime',
+                        data: param,
+                        dataType: 'json',
+                        success: function success(res) {
+                            data.post = res.data.post;
+                            console.log(data.post);
+                            console.log(data.topic);
+                            console.log(data.user);
+                            _this2.setState({
+                                topic: data.topic,
+                                user: data.user,
+                                post: data.post
+                            });
+                            console.log(_this2.state);
                         }
                     });
                 },
                 error: function error() {
-                    console(hahh);
+                    console("error");
                 }
             });
         }
-        // env.fid = res.data.topic.fid;
-        //             env.tid = res.data.topic.tid;
-        //              // console.log(res);
-        //             var topic = res.data.topic;
-        //             var posts = res.data.topic.posts;
-        //             let _user = res.data.user;
-        //             var nick = _user.nick;
-        //             var level = '•'+_user.level + "级";
-        //             if (topic.img){
-        //                 let img = topic.img;
-        //                 img.forEach(function (item, index) {
-        //                     $("#topic_img").append("<img src='" + item.url + "' />");
-        //                 });
-        //             }
-        //             var time = getDateDiff(topic.ctime);
-        //             $(".title").text(res.data.topic.title);
-        //             $("#nick").text(nick);
-        //             $(".lev").text(level);
-        //             $(".car-img.topic").attr("src", _user.small_logo);
-        //             $(".head-img.topic").attr("src", _user.avatar);
-
-        //             let content = topic.content.replace(/\n/ig, '<br>');
-        //             $("#topic_content").html(content);
-        //             $("#topic_time").text(time);
-        //             $("#topic_address").text(topic.city_name?topic.city_name:'');
-        //             $("#add_icon").append("<span class='posts'>" + posts + "</span>");
-        //             $(".active").text(res.data.forum.name);
-
-        //             //获取用户信息
-        //             if (res.data.current){
-        //                 let cur_user = res.data.current;
-        //                 user.avatar = cur_user.avatar;
-        //                 user.name = cur_user.nick;
-        //                 user.level = cur_user.level;
-        //                 user.logo = cur_user.small_logo;
-        //             }
-
-        //             initShare({
-        //                 title: res.data.topic.title || '广州车展分享',
-        //                 link: window.location.toString(),
-        //                 img: _user.avatar,
-        //                 desc: res.data.topic.content
-        //             });
-        //         },
-
-
     }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
-                null,
-                this.state.topic.uid
+                { className: 'bar', id: 'topic_id' },
+                React.createElement('img', { className: 'head-img topic', src: this.state.user.avatar }),
+                React.createElement(
+                    'span',
+                    { className: 'name', id: 'nick' },
+                    '\u6D4B\u8BD54.16-20'
+                ),
+                ' ',
+                React.createElement(
+                    'span',
+                    { className: 'lev' },
+                    '\u20225\u7EA7'
+                ),
+                React.createElement('img', { className: 'car-img topic', src: this.state.user.small_logo })
             );
         }
     }]);
 
     return Test;
+}(React.Component);
+
+var ListItem = function (_React$Component2) {
+    _inherits(ListItem, _React$Component2);
+
+    function ListItem() {
+        _classCallCheck(this, ListItem);
+
+        return _possibleConstructorReturn(this, (ListItem.__proto__ || Object.getPrototypeOf(ListItem)).apply(this, arguments));
+    }
+
+    _createClass(ListItem, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'ul',
+                null,
+                this.props.data.map(function (item, index) {
+                    React.createElement(Li, { content: item, key: index });
+                })
+            );
+        }
+    }]);
+
+    return ListItem;
+}(React.Component);
+
+var Li = function (_React$Component3) {
+    _inherits(Li, _React$Component3);
+
+    function Li() {
+        _classCallCheck(this, Li);
+
+        return _possibleConstructorReturn(this, (Li.__proto__ || Object.getPrototypeOf(Li)).apply(this, arguments));
+    }
+
+    _createClass(Li, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'li',
+                null,
+                this.props.content.content
+            );
+        }
+    }]);
+
+    return Li;
 }(React.Component);
 
 ReactDOM.render(React.createElement(Test, null), test);
@@ -344,7 +396,7 @@ ReactDOM.render(React.createElement(Test, null), test);
 //             $("#topic_content").html(content);
 //             $("#topic_time").text(time);
 //             $("#topic_address").text(topic.city_name?topic.city_name:'');
-//             $("#add_icon").append("<span class='posts'>" + posts + "</span>");
+//             $("#add_icon").append("<span className='posts'>" + posts + "</span>");
 //             $(".active").text(res.data.forum.name);
 
 //             //获取用户信息
@@ -459,23 +511,23 @@ ReactDOM.render(React.createElement(Test, null), test);
 //                 let quoteName = users[uid].nick;
 //                 // let m=user.avatar;
 
-//                 quote = `<p class="quote">
+//                 quote = `<p className="quote">
 //                         回复<span>${getFloor(oid, true)}</span><span>${quoteName}</span>: ${quoteContent}
 //                     </p>`;
-//                 html += `<li class="comment-content " id="${post.oid}">
-//                     <div class="bar">
-//                         <img class="head-img" src="${user.avatar}"/>
-//                         <span class="name">${user.name}</span>
-//                         <span class="lev">•${user.level}级</span>
-//                         <img class="car-img" class="car_small_logo"  src="${user.logo}"/>
-//                          <span class="oid">${getFloor(post.oid)}</span>
+//                 html += `<li className="comment-content " id="${post.oid}">
+//                     <div className="bar">
+//                         <img className="head-img" src="${user.avatar}"/>
+//                         <span className="name">${user.name}</span>
+//                         <span className="lev">•${user.level}级</span>
+//                         <img className="car-img" className="car_small_logo"  src="${user.logo}"/>
+//                          <span className="oid">${getFloor(post.oid)}</span>
 //                     </div>
 //                     ${quote}
-//                     <p class="say">${post.content}</p>
-//                     <p class="footer">
-//                         <span class="time">${time}</span>
-//                         <span class="local">${post.city}</span>
-//                         <span class="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
+//                     <p className="say">${post.content}</p>
+//                     <p className="footer">
+//                         <span className="time">${time}</span>
+//                         <span className="local">${post.city}</span>
+//                         <span className="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
 //                     </p>
 //                 </li>`;
 
@@ -503,26 +555,26 @@ ReactDOM.render(React.createElement(Test, null), test);
 
 //                 hideInput();
 //             }
-//             // quote = `<p class="quote">
+//             // quote = `<p className="quote">
 //             //             回复<span>${getFloor(oid, true)}</span><span>${quoteName}</span>: ${quoteContent}
 //             //         </p>`
 //             // if (oid<=8){
 
 //                 else{
-//                     html += `<li class="comment-content " id="${post.oid}">
-//                         <div class="bar">
-//                             <img class="head-img" src="${user.avatar}"/>
-//                             <span class="name">${user.name}</span>
-//                             <span class="lev">•${user.level}级</span>
-//                             <img class="car-img" class="car_small_logo"  src="${user.logo}"/>
-//                              <span class="oid">${getFloor(post.oid)}</span>
+//                     html += `<li className="comment-content " id="${post.oid}">
+//                         <div className="bar">
+//                             <img className="head-img" src="${user.avatar}"/>
+//                             <span className="name">${user.name}</span>
+//                             <span className="lev">•${user.level}级</span>
+//                             <img className="car-img" className="car_small_logo"  src="${user.logo}"/>
+//                              <span className="oid">${getFloor(post.oid)}</span>
 //                         </div>
 //                         ${quote}
-//                         <p class="say">${post.content}</p>
-//                         <p class="footer">
-//                             <span class="time">${time}</span>
-//                             <span class="local">${post.city}</span>
-//                             <span class="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
+//                         <p className="say">${post.content}</p>
+//                         <p className="footer">
+//                             <span className="time">${time}</span>
+//                             <span className="local">${post.city}</span>
+//                             <span className="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
 //                         </p>
 //                     </li>`;
 
@@ -574,9 +626,9 @@ ReactDOM.render(React.createElement(Test, null), test);
 
 // function showSucc(){
 //     let succ = $(".success");
-//     succ.addClass('show');
+//     succ.addclassName('show');
 //     setTimeout(function(){
-//         succ.removeClass('show');
+//         succ.removeclassName('show');
 //     }, 2000);
 // }
 // function showInput(){
@@ -584,7 +636,7 @@ ReactDOM.render(React.createElement(Test, null), test);
 //     let reply = $(".reply");
 //     reply.show();
 //     $("#writeText").focus();
-//     // reply.addClass('show').on('webkitTransitionEnd', function(){
+//     // reply.addclassName('show').on('webkitTransitionEnd', function(){
 //     //     reply.off('webkitTransitionEnd');
 //         // $("#writeText").focus();
 //     // });
@@ -595,7 +647,7 @@ ReactDOM.render(React.createElement(Test, null), test);
 //     $("#commit").show();
 //     $("#writeText").val('');
 
-//     // reply.removeClass('show').on('webkitTransitionEnd', function(){
+//     // reply.removeclassName('show').on('webkitTransitionEnd', function(){
 //     //     reply.off('webkitTransitionEnd');
 //     //
 //     // });
@@ -636,25 +688,25 @@ ReactDOM.render(React.createElement(Test, null), test);
 //                     let uid = quotes[posts[i].quote_pid].uid;
 //                     let oid = quotes[posts[i].quote_pid].oid
 //                     let quoteName = users[uid].nick;
-//                     quote = `<p class="quote">
+//                     quote = `<p className="quote">
 //                         回复<span>${getFloor(oid, true)}</span><span> ${quoteName}</span>: ${quoteContent}
 //                     </p>`;
 //                 }
 
-//                 html += `<li class="comment-content" id="${posts[i].oid}">
-//                     <div class="bar">
-//                         <img class="head-img" src="${users[uid].avatar}">
-//                         <span class="name">${users[uid].nick}</span>
-//                         <span class="lev">•${users[uid].level}级</span>
-//                         <img class="car-img" class="car_small_logo"  src="${users[uid].small_logo}">
-//                         <span class="oid">${getFloor(posts[i].oid)}</span>
+//                 html += `<li className="comment-content" id="${posts[i].oid}">
+//                     <div className="bar">
+//                         <img className="head-img" src="${users[uid].avatar}">
+//                         <span className="name">${users[uid].nick}</span>
+//                         <span className="lev">•${users[uid].level}级</span>
+//                         <img className="car-img" className="car_small_logo"  src="${users[uid].small_logo}">
+//                         <span className="oid">${getFloor(posts[i].oid)}</span>
 //                     </div>
 //                      ${quote}
-//                     <p class="say">${posts[i].content}</p>
-//                     <p class="footer">
-//                         <span class="time">${time}</span>
-//                         <span class="local">${posts[i].city_name?posts[i].city_name:''}</span>
-//                         <span class="res"  data-floor=${posts[i].oid} data-pid=${posts[i].pid}>回复</span>
+//                     <p className="say">${posts[i].content}</p>
+//                     <p className="footer">
+//                         <span className="time">${time}</span>
+//                         <span className="local">${posts[i].city_name?posts[i].city_name:''}</span>
+//                         <span className="res"  data-floor=${posts[i].oid} data-pid=${posts[i].pid}>回复</span>
 //                     </p>
 //                 </li>`;
 //             }

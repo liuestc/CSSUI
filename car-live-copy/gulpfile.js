@@ -120,6 +120,6 @@ gulp.task('watch', function () {
 gulp.task('server', function () {
     gulpConnect.server({
         root: './',
-        port: 8000
+        port: 8011
     });
 });
