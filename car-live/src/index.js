@@ -65,56 +65,94 @@ class Test extends React.Component{
             }
         })
     }
-// env.fid = res.data.topic.fid;
-//             env.tid = res.data.topic.tid;
-//              // console.log(res);
-//             var topic = res.data.topic;
-//             var posts = res.data.topic.posts;
-//             let _user = res.data.user;
-//             var nick = _user.nick;
-//             var level = '•'+_user.level + "级";
-//             if (topic.img){
-//                 let img = topic.img;
-//                 img.forEach(function (item, index) {
-//                     $("#topic_img").append("<img src='" + item.url + "' />");
-//                 });
-//             }
-//             var time = getDateDiff(topic.ctime);
-//             $(".title").text(res.data.topic.title);
-//             $("#nick").text(nick);
-//             $(".lev").text(level);
-//             $(".car-img.topic").attr("src", _user.small_logo);
-//             $(".head-img.topic").attr("src", _user.avatar);
-            
-//             let content = topic.content.replace(/\n/ig, '<br>');
-//             $("#topic_content").html(content);
-//             $("#topic_time").text(time);
-//             $("#topic_address").text(topic.city_name?topic.city_name:'');
-//             $("#add_icon").append("<span class='posts'>" + posts + "</span>");
-//             $(".active").text(res.data.forum.name);
-
-//             //获取用户信息
-//             if (res.data.current){
-//                 let cur_user = res.data.current;
-//                 user.avatar = cur_user.avatar;
-//                 user.name = cur_user.nick;
-//                 user.level = cur_user.level;
-//                 user.logo = cur_user.small_logo;
-//             }
-
-//             initShare({
-//                 title: res.data.topic.title || '广州车展分享',
-//                 link: window.location.toString(),
-//                 img: _user.avatar,
-//                 desc: res.data.topic.content
-//             });
-//         },
-
 
     
     render(){
         return (
-            <div >{this.state.topic.uid}</div>
+            <div className="container">
+      <div className="live-video">
+        <p className="left_ban">
+            <img src="./img/left.jpg" id="live_left"/>
+        </p>
+        <p className="video_play">
+            <img src="./img/live.jpg" id="live"/>
+        </p>
+        <p className="right_ban">
+            <img src="./img/right.jpg" id="live_right"/>
+        </p>
+    </div>
+    <div className="middle">
+        <div className="m-top"></div>
+        <div className="bar" id="topic_id">
+            <img className="head-img topic" src=""/>
+            <span className="name" id="nick"></span> <span className="lev"></span>
+            <img className="car-img topic" src=""/>
+        </div>
+        <div className="content">
+            <p className="title"></p>
+            <p id="topic_content"></p>
+            <p className="img" id="topic_img"/>
+            <p className="footer">
+                <span className="time" id="topic_time"></span>
+                <span id="topic_address" className="local"></span>
+                <span className="active"></span>
+            </p>
+        </div>
+
+        <div className="comment">
+            <p className="headline">评论</p>
+            <ul id="comment_list"></ul>
+
+
+            <div className="more">查看更多评论</div>
+            <div className="open-chelun">
+                <a href="http://chelun.com/url/rfcKLg">打开车轮社区，查看更多评论
+                    <span className="arrow"></span>
+                </a>
+            </div>
+        </div>
+
+        <div className="m-bottom"></div>
+    </div>
+    <div className="footer-btns">
+        <div id="commit">
+            <input type="text" id="writeMes" placeholder="写评论..." name=""/>
+            <span id="add_icon"><a href="#1"><img src="img/write.png"/></a></span>
+            <span id="share"><img src="imgshare.png"/></span>
+        </div>
+
+        <div className="download">
+            <p className="icon"><img src="img/icon.png"/></p>
+            <div className="down-mid">
+                <p className="app-name">车轮社区</p>
+                <p className="down-sub">下载参与更多讨论</p>
+            </div>
+            <p className="down-btn"><a href="http://chelun.com/url/rfcKLg">下载APP</a></p>
+            <span id="close">
+                <img src="./img/close.png"/>
+            </span>
+        </div>
+
+        <div className="reply">
+            <div className="reply-head">
+                <span className="cancel"></span>
+                <span id="reply_floor">回复楼主</span>
+                <span className="push" id="push_sub">发表</span>
+            </div>
+            <div className="reply-input">
+                <textarea name="" id="writeText" autofocus placeholder="请输入回复内容"></textarea>
+                <div className="cityname"></div>
+            </div>
+        </div>
+    </div>
+
+    <div className="success">
+        <img src="./img/succ.png"/>
+        <span>回复成功</span>
+    </div>
+
+</div>
+
             )
     }
 }
@@ -332,7 +370,7 @@ ReactDOM.render(<Test/>,test);
 //             $("#topic_content").html(content);
 //             $("#topic_time").text(time);
 //             $("#topic_address").text(topic.city_name?topic.city_name:'');
-//             $("#add_icon").append("<span class='posts'>" + posts + "</span>");
+//             $("#add_icon").append("<span className='posts'>" + posts + "</span>");
 //             $(".active").text(res.data.forum.name);
 
 //             //获取用户信息
@@ -447,23 +485,23 @@ ReactDOM.render(<Test/>,test);
 //                 let quoteName = users[uid].nick;
 //                 // let m=user.avatar;
 
-//                 quote = `<p class="quote">
+//                 quote = `<p className="quote">
 //                         回复<span>${getFloor(oid, true)}</span><span>${quoteName}</span>: ${quoteContent}
 //                     </p>`;
-//                 html += `<li class="comment-content " id="${post.oid}">
-//                     <div class="bar">
-//                         <img class="head-img" src="${user.avatar}"/>
-//                         <span class="name">${user.name}</span>
-//                         <span class="lev">•${user.level}级</span>
-//                         <img class="car-img" class="car_small_logo"  src="${user.logo}"/>
-//                          <span class="oid">${getFloor(post.oid)}</span>
+//                 html += `<li className="comment-content " id="${post.oid}">
+//                     <div className="bar">
+//                         <img className="head-img" src="${user.avatar}"/>
+//                         <span className="name">${user.name}</span>
+//                         <span className="lev">•${user.level}级</span>
+//                         <img className="car-img" className="car_small_logo"  src="${user.logo}"/>
+//                          <span className="oid">${getFloor(post.oid)}</span>
 //                     </div>
 //                     ${quote}
-//                     <p class="say">${post.content}</p>
-//                     <p class="footer">
-//                         <span class="time">${time}</span>
-//                         <span class="local">${post.city}</span>
-//                         <span class="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
+//                     <p className="say">${post.content}</p>
+//                     <p className="footer">
+//                         <span className="time">${time}</span>
+//                         <span className="local">${post.city}</span>
+//                         <span className="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
 //                     </p>
 //                 </li>`;
 
@@ -491,26 +529,26 @@ ReactDOM.render(<Test/>,test);
 
 //                 hideInput();
 //             }
-//             // quote = `<p class="quote">
+//             // quote = `<p className="quote">
 //             //             回复<span>${getFloor(oid, true)}</span><span>${quoteName}</span>: ${quoteContent}
 //             //         </p>`
 //             // if (oid<=8){
 
 //                 else{
-//                     html += `<li class="comment-content " id="${post.oid}">
-//                         <div class="bar">
-//                             <img class="head-img" src="${user.avatar}"/>
-//                             <span class="name">${user.name}</span>
-//                             <span class="lev">•${user.level}级</span>
-//                             <img class="car-img" class="car_small_logo"  src="${user.logo}"/>
-//                              <span class="oid">${getFloor(post.oid)}</span>
+//                     html += `<li className="comment-content " id="${post.oid}">
+//                         <div className="bar">
+//                             <img className="head-img" src="${user.avatar}"/>
+//                             <span className="name">${user.name}</span>
+//                             <span className="lev">•${user.level}级</span>
+//                             <img className="car-img" className="car_small_logo"  src="${user.logo}"/>
+//                              <span className="oid">${getFloor(post.oid)}</span>
 //                         </div>
 //                         ${quote}
-//                         <p class="say">${post.content}</p>
-//                         <p class="footer">
-//                             <span class="time">${time}</span>
-//                             <span class="local">${post.city}</span>
-//                             <span class="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
+//                         <p className="say">${post.content}</p>
+//                         <p className="footer">
+//                             <span className="time">${time}</span>
+//                             <span className="local">${post.city}</span>
+//                             <span className="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
 //                         </p>
 //                     </li>`;
 
@@ -562,9 +600,9 @@ ReactDOM.render(<Test/>,test);
 
 // function showSucc(){
 //     let succ = $(".success");
-//     succ.addClass('show');
+//     succ.addclassName('show');
 //     setTimeout(function(){
-//         succ.removeClass('show');
+//         succ.removeclassName('show');
 //     }, 2000);
 // }
 // function showInput(){
@@ -572,7 +610,7 @@ ReactDOM.render(<Test/>,test);
 //     let reply = $(".reply");
 //     reply.show();
 //     $("#writeText").focus();
-//     // reply.addClass('show').on('webkitTransitionEnd', function(){
+//     // reply.addclassName('show').on('webkitTransitionEnd', function(){
 //     //     reply.off('webkitTransitionEnd');
 //         // $("#writeText").focus();
 //     // });
@@ -583,7 +621,7 @@ ReactDOM.render(<Test/>,test);
 //     $("#commit").show();
 //     $("#writeText").val('');
 
-//     // reply.removeClass('show').on('webkitTransitionEnd', function(){
+//     // reply.removeclassName('show').on('webkitTransitionEnd', function(){
 //     //     reply.off('webkitTransitionEnd');
 //     //
 //     // });
@@ -624,25 +662,25 @@ ReactDOM.render(<Test/>,test);
 //                     let uid = quotes[posts[i].quote_pid].uid;
 //                     let oid = quotes[posts[i].quote_pid].oid
 //                     let quoteName = users[uid].nick;
-//                     quote = `<p class="quote">
+//                     quote = `<p className="quote">
 //                         回复<span>${getFloor(oid, true)}</span><span> ${quoteName}</span>: ${quoteContent}
 //                     </p>`;
 //                 }
 
-//                 html += `<li class="comment-content" id="${posts[i].oid}">
-//                     <div class="bar">
-//                         <img class="head-img" src="${users[uid].avatar}">
-//                         <span class="name">${users[uid].nick}</span>
-//                         <span class="lev">•${users[uid].level}级</span>
-//                         <img class="car-img" class="car_small_logo"  src="${users[uid].small_logo}">
-//                         <span class="oid">${getFloor(posts[i].oid)}</span>
+//                 html += `<li className="comment-content" id="${posts[i].oid}">
+//                     <div className="bar">
+//                         <img className="head-img" src="${users[uid].avatar}">
+//                         <span className="name">${users[uid].nick}</span>
+//                         <span className="lev">•${users[uid].level}级</span>
+//                         <img className="car-img" className="car_small_logo"  src="${users[uid].small_logo}">
+//                         <span className="oid">${getFloor(posts[i].oid)}</span>
 //                     </div>
 //                      ${quote}
-//                     <p class="say">${posts[i].content}</p>
-//                     <p class="footer">
-//                         <span class="time">${time}</span>
-//                         <span class="local">${posts[i].city_name?posts[i].city_name:''}</span>
-//                         <span class="res"  data-floor=${posts[i].oid} data-pid=${posts[i].pid}>回复</span>
+//                     <p className="say">${posts[i].content}</p>
+//                     <p className="footer">
+//                         <span className="time">${time}</span>
+//                         <span className="local">${posts[i].city_name?posts[i].city_name:''}</span>
+//                         <span className="res"  data-floor=${posts[i].oid} data-pid=${posts[i].pid}>回复</span>
 //                     </p>
 //                 </li>`;
 //             }

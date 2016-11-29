@@ -86,59 +86,180 @@ var Test = function (_React$Component) {
                 }
             });
         }
-        // env.fid = res.data.topic.fid;
-        //             env.tid = res.data.topic.tid;
-        //              // console.log(res);
-        //             var topic = res.data.topic;
-        //             var posts = res.data.topic.posts;
-        //             let _user = res.data.user;
-        //             var nick = _user.nick;
-        //             var level = '•'+_user.level + "级";
-        //             if (topic.img){
-        //                 let img = topic.img;
-        //                 img.forEach(function (item, index) {
-        //                     $("#topic_img").append("<img src='" + item.url + "' />");
-        //                 });
-        //             }
-        //             var time = getDateDiff(topic.ctime);
-        //             $(".title").text(res.data.topic.title);
-        //             $("#nick").text(nick);
-        //             $(".lev").text(level);
-        //             $(".car-img.topic").attr("src", _user.small_logo);
-        //             $(".head-img.topic").attr("src", _user.avatar);
-
-        //             let content = topic.content.replace(/\n/ig, '<br>');
-        //             $("#topic_content").html(content);
-        //             $("#topic_time").text(time);
-        //             $("#topic_address").text(topic.city_name?topic.city_name:'');
-        //             $("#add_icon").append("<span class='posts'>" + posts + "</span>");
-        //             $(".active").text(res.data.forum.name);
-
-        //             //获取用户信息
-        //             if (res.data.current){
-        //                 let cur_user = res.data.current;
-        //                 user.avatar = cur_user.avatar;
-        //                 user.name = cur_user.nick;
-        //                 user.level = cur_user.level;
-        //                 user.logo = cur_user.small_logo;
-        //             }
-
-        //             initShare({
-        //                 title: res.data.topic.title || '广州车展分享',
-        //                 link: window.location.toString(),
-        //                 img: _user.avatar,
-        //                 desc: res.data.topic.content
-        //             });
-        //         },
-
-
     }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
-                null,
-                this.state.topic.uid
+                { className: 'container' },
+                React.createElement(
+                    'div',
+                    { className: 'live-video' },
+                    React.createElement(
+                        'p',
+                        { className: 'left_ban' },
+                        React.createElement('img', { src: './img/left.jpg', id: 'live_left' })
+                    ),
+                    React.createElement(
+                        'p',
+                        { className: 'video_play' },
+                        React.createElement('img', { src: './img/live.jpg', id: 'live' })
+                    ),
+                    React.createElement(
+                        'p',
+                        { className: 'right_ban' },
+                        React.createElement('img', { src: './img/right.jpg', id: 'live_right' })
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'middle' },
+                    React.createElement('div', { className: 'm-top' }),
+                    React.createElement(
+                        'div',
+                        { className: 'bar', id: 'topic_id' },
+                        React.createElement('img', { className: 'head-img topic', src: '' }),
+                        React.createElement('span', { className: 'name', id: 'nick' }),
+                        ' ',
+                        React.createElement('span', { className: 'lev' }),
+                        React.createElement('img', { className: 'car-img topic', src: '' })
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'content' },
+                        React.createElement('p', { className: 'title' }),
+                        React.createElement('p', { id: 'topic_content' }),
+                        React.createElement('p', { className: 'img', id: 'topic_img' }),
+                        React.createElement(
+                            'p',
+                            { className: 'footer' },
+                            React.createElement('span', { className: 'time', id: 'topic_time' }),
+                            React.createElement('span', { id: 'topic_address', className: 'local' }),
+                            React.createElement('span', { className: 'active' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'comment' },
+                        React.createElement(
+                            'p',
+                            { className: 'headline' },
+                            '\u8BC4\u8BBA'
+                        ),
+                        React.createElement('ul', { id: 'comment_list' }),
+                        React.createElement(
+                            'div',
+                            { className: 'more' },
+                            '\u67E5\u770B\u66F4\u591A\u8BC4\u8BBA'
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'open-chelun' },
+                            React.createElement(
+                                'a',
+                                { href: 'http://chelun.com/url/rfcKLg' },
+                                '\u6253\u5F00\u8F66\u8F6E\u793E\u533A\uFF0C\u67E5\u770B\u66F4\u591A\u8BC4\u8BBA',
+                                React.createElement('span', { className: 'arrow' })
+                            )
+                        )
+                    ),
+                    React.createElement('div', { className: 'm-bottom' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'footer-btns' },
+                    React.createElement(
+                        'div',
+                        { id: 'commit' },
+                        React.createElement('input', { type: 'text', id: 'writeMes', placeholder: '\u5199\u8BC4\u8BBA...', name: '' }),
+                        React.createElement(
+                            'span',
+                            { id: 'add_icon' },
+                            React.createElement(
+                                'a',
+                                { href: '#1' },
+                                React.createElement('img', { src: 'img/write.png' })
+                            )
+                        ),
+                        React.createElement(
+                            'span',
+                            { id: 'share' },
+                            React.createElement('img', { src: 'imgshare.png' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'download' },
+                        React.createElement(
+                            'p',
+                            { className: 'icon' },
+                            React.createElement('img', { src: 'img/icon.png' })
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'down-mid' },
+                            React.createElement(
+                                'p',
+                                { className: 'app-name' },
+                                '\u8F66\u8F6E\u793E\u533A'
+                            ),
+                            React.createElement(
+                                'p',
+                                { className: 'down-sub' },
+                                '\u4E0B\u8F7D\u53C2\u4E0E\u66F4\u591A\u8BA8\u8BBA'
+                            )
+                        ),
+                        React.createElement(
+                            'p',
+                            { className: 'down-btn' },
+                            React.createElement(
+                                'a',
+                                { href: 'http://chelun.com/url/rfcKLg' },
+                                '\u4E0B\u8F7DAPP'
+                            )
+                        ),
+                        React.createElement(
+                            'span',
+                            { id: 'close' },
+                            React.createElement('img', { src: './img/close.png' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'reply' },
+                        React.createElement(
+                            'div',
+                            { className: 'reply-head' },
+                            React.createElement('span', { className: 'cancel' }),
+                            React.createElement(
+                                'span',
+                                { id: 'reply_floor' },
+                                '\u56DE\u590D\u697C\u4E3B'
+                            ),
+                            React.createElement(
+                                'span',
+                                { className: 'push', id: 'push_sub' },
+                                '\u53D1\u8868'
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'reply-input' },
+                            React.createElement('textarea', { name: '', id: 'writeText', autofocus: true, placeholder: '\u8BF7\u8F93\u5165\u56DE\u590D\u5185\u5BB9' }),
+                            React.createElement('div', { className: 'cityname' })
+                        )
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'success' },
+                    React.createElement('img', { src: './img/succ.png' }),
+                    React.createElement(
+                        'span',
+                        null,
+                        '\u56DE\u590D\u6210\u529F'
+                    )
+                )
             );
         }
     }]);
@@ -344,7 +465,7 @@ ReactDOM.render(React.createElement(Test, null), test);
 //             $("#topic_content").html(content);
 //             $("#topic_time").text(time);
 //             $("#topic_address").text(topic.city_name?topic.city_name:'');
-//             $("#add_icon").append("<span class='posts'>" + posts + "</span>");
+//             $("#add_icon").append("<span className='posts'>" + posts + "</span>");
 //             $(".active").text(res.data.forum.name);
 
 //             //获取用户信息
@@ -459,23 +580,23 @@ ReactDOM.render(React.createElement(Test, null), test);
 //                 let quoteName = users[uid].nick;
 //                 // let m=user.avatar;
 
-//                 quote = `<p class="quote">
+//                 quote = `<p className="quote">
 //                         回复<span>${getFloor(oid, true)}</span><span>${quoteName}</span>: ${quoteContent}
 //                     </p>`;
-//                 html += `<li class="comment-content " id="${post.oid}">
-//                     <div class="bar">
-//                         <img class="head-img" src="${user.avatar}"/>
-//                         <span class="name">${user.name}</span>
-//                         <span class="lev">•${user.level}级</span>
-//                         <img class="car-img" class="car_small_logo"  src="${user.logo}"/>
-//                          <span class="oid">${getFloor(post.oid)}</span>
+//                 html += `<li className="comment-content " id="${post.oid}">
+//                     <div className="bar">
+//                         <img className="head-img" src="${user.avatar}"/>
+//                         <span className="name">${user.name}</span>
+//                         <span className="lev">•${user.level}级</span>
+//                         <img className="car-img" className="car_small_logo"  src="${user.logo}"/>
+//                          <span className="oid">${getFloor(post.oid)}</span>
 //                     </div>
 //                     ${quote}
-//                     <p class="say">${post.content}</p>
-//                     <p class="footer">
-//                         <span class="time">${time}</span>
-//                         <span class="local">${post.city}</span>
-//                         <span class="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
+//                     <p className="say">${post.content}</p>
+//                     <p className="footer">
+//                         <span className="time">${time}</span>
+//                         <span className="local">${post.city}</span>
+//                         <span className="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
 //                     </p>
 //                 </li>`;
 
@@ -503,26 +624,26 @@ ReactDOM.render(React.createElement(Test, null), test);
 
 //                 hideInput();
 //             }
-//             // quote = `<p class="quote">
+//             // quote = `<p className="quote">
 //             //             回复<span>${getFloor(oid, true)}</span><span>${quoteName}</span>: ${quoteContent}
 //             //         </p>`
 //             // if (oid<=8){
 
 //                 else{
-//                     html += `<li class="comment-content " id="${post.oid}">
-//                         <div class="bar">
-//                             <img class="head-img" src="${user.avatar}"/>
-//                             <span class="name">${user.name}</span>
-//                             <span class="lev">•${user.level}级</span>
-//                             <img class="car-img" class="car_small_logo"  src="${user.logo}"/>
-//                              <span class="oid">${getFloor(post.oid)}</span>
+//                     html += `<li className="comment-content " id="${post.oid}">
+//                         <div className="bar">
+//                             <img className="head-img" src="${user.avatar}"/>
+//                             <span className="name">${user.name}</span>
+//                             <span className="lev">•${user.level}级</span>
+//                             <img className="car-img" className="car_small_logo"  src="${user.logo}"/>
+//                              <span className="oid">${getFloor(post.oid)}</span>
 //                         </div>
 //                         ${quote}
-//                         <p class="say">${post.content}</p>
-//                         <p class="footer">
-//                             <span class="time">${time}</span>
-//                             <span class="local">${post.city}</span>
-//                             <span class="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
+//                         <p className="say">${post.content}</p>
+//                         <p className="footer">
+//                             <span className="time">${time}</span>
+//                             <span className="local">${post.city}</span>
+//                             <span className="res" data-floor=${post.oid} data-pid=${post.pid}>回复</span>
 //                         </p>
 //                     </li>`;
 
@@ -574,9 +695,9 @@ ReactDOM.render(React.createElement(Test, null), test);
 
 // function showSucc(){
 //     let succ = $(".success");
-//     succ.addClass('show');
+//     succ.addclassName('show');
 //     setTimeout(function(){
-//         succ.removeClass('show');
+//         succ.removeclassName('show');
 //     }, 2000);
 // }
 // function showInput(){
@@ -584,7 +705,7 @@ ReactDOM.render(React.createElement(Test, null), test);
 //     let reply = $(".reply");
 //     reply.show();
 //     $("#writeText").focus();
-//     // reply.addClass('show').on('webkitTransitionEnd', function(){
+//     // reply.addclassName('show').on('webkitTransitionEnd', function(){
 //     //     reply.off('webkitTransitionEnd');
 //         // $("#writeText").focus();
 //     // });
@@ -595,7 +716,7 @@ ReactDOM.render(React.createElement(Test, null), test);
 //     $("#commit").show();
 //     $("#writeText").val('');
 
-//     // reply.removeClass('show').on('webkitTransitionEnd', function(){
+//     // reply.removeclassName('show').on('webkitTransitionEnd', function(){
 //     //     reply.off('webkitTransitionEnd');
 //     //
 //     // });
@@ -636,25 +757,25 @@ ReactDOM.render(React.createElement(Test, null), test);
 //                     let uid = quotes[posts[i].quote_pid].uid;
 //                     let oid = quotes[posts[i].quote_pid].oid
 //                     let quoteName = users[uid].nick;
-//                     quote = `<p class="quote">
+//                     quote = `<p className="quote">
 //                         回复<span>${getFloor(oid, true)}</span><span> ${quoteName}</span>: ${quoteContent}
 //                     </p>`;
 //                 }
 
-//                 html += `<li class="comment-content" id="${posts[i].oid}">
-//                     <div class="bar">
-//                         <img class="head-img" src="${users[uid].avatar}">
-//                         <span class="name">${users[uid].nick}</span>
-//                         <span class="lev">•${users[uid].level}级</span>
-//                         <img class="car-img" class="car_small_logo"  src="${users[uid].small_logo}">
-//                         <span class="oid">${getFloor(posts[i].oid)}</span>
+//                 html += `<li className="comment-content" id="${posts[i].oid}">
+//                     <div className="bar">
+//                         <img className="head-img" src="${users[uid].avatar}">
+//                         <span className="name">${users[uid].nick}</span>
+//                         <span className="lev">•${users[uid].level}级</span>
+//                         <img className="car-img" className="car_small_logo"  src="${users[uid].small_logo}">
+//                         <span className="oid">${getFloor(posts[i].oid)}</span>
 //                     </div>
 //                      ${quote}
-//                     <p class="say">${posts[i].content}</p>
-//                     <p class="footer">
-//                         <span class="time">${time}</span>
-//                         <span class="local">${posts[i].city_name?posts[i].city_name:''}</span>
-//                         <span class="res"  data-floor=${posts[i].oid} data-pid=${posts[i].pid}>回复</span>
+//                     <p className="say">${posts[i].content}</p>
+//                     <p className="footer">
+//                         <span className="time">${time}</span>
+//                         <span className="local">${posts[i].city_name?posts[i].city_name:''}</span>
+//                         <span className="res"  data-floor=${posts[i].oid} data-pid=${posts[i].pid}>回复</span>
 //                     </p>
 //                 </li>`;
 //             }

@@ -1,0 +1,183 @@
+@import "reset";
+@import "common";
+//@import "swiper";
+
+.container {
+  position: relative;
+  .banner {
+    overflow: hidden;
+    position: relative;
+    height: 1114px;
+    //height: 100%;
+    background: url("../image/bbs-banner.png") no-repeat center;
+    background-size: cover;
+    h2 {
+      //margin: 52px auto;
+      margin: 90px auto 0;
+      width: 619px;
+      height: 260px;
+      background: url("../image/bbs-banner-title.png") no-repeat center;
+      background-size: 619px 260px;
+    }
+    .banner-btn-download {
+      position: absolute;
+      left: 50%;
+      bottom: 150px;
+      z-index: 10;
+      margin-left: -205px;
+      width: 410px;
+      height: 100px;
+      background: #10a2fb url("../image/download.png") no-repeat center;
+      background-size: 226px 48px;
+      border-radius: 50px;
+      box-shadow: inset 0 -2px 4px #008def;
+    }
+    .banner-btn-next {
+      position: absolute;
+      left: 50%;
+      bottom: 50px;
+      z-index: 10;
+      margin-left: -45px;
+      width: 90px;
+      height: 50px;
+      background: url("../image/next.png") no-repeat center;
+      background-size: 89px 46px;
+      animation-name: next;
+      animation-duration: 0.8s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    @keyframes next {
+      0% {
+        transform: translateY(0);
+      }
+      25% {
+        transform: translateY(-4px);/*no*/
+      }
+      50% {
+        transform: translateY(0);
+      }
+      75% {
+        transform: translateY(4px);/*no*/
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .slide-title {
+    position: relative;
+    //padding-top: 130px;
+    //height: 210px;
+    height: 340px;
+    text-align: center;
+    li {
+      position: absolute;
+      left: 0;
+      top: 130px;
+      right: 0;
+      color: #0099f8;
+      transition: all .2s;
+      opacity: 0;
+      &.active {
+        opacity: 1;
+      }
+      h3 {
+        margin-bottom: 20px;
+        line-height: 56px;
+        font-size: 56px;
+
+      }
+      p {
+        line-height: 36px;
+        font-size: 36px;
+      }
+    }
+  }
+
+  .slide-content {
+    //overflow: hidden;
+    padding-top: 120px;
+    height: 680px;
+    background: url("../image/bbs-slide.png") no-repeat center;
+    background-size: 438px 800px;
+    .slide-content-inner {
+      position: relative;
+      margin: 0 auto;
+      width: 380px;
+      height: 682px;
+      .swiper-container {
+        width: 100%;
+        height: 100%;
+        .swiper-slide {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .swiper-button-prev {
+        position: absolute;
+        top: 50%;
+        left: -120px;
+        margin-top: -35px;
+        width: 70px;
+        height: 70px;
+        background: url("../image/arrow-l.png") no-repeat center;
+        background-size: 38px 70px;
+      }
+      .swiper-button-next {
+        position: absolute;
+        top: 50%;
+        right: -120px;
+        margin-top: -35px;
+        width: 70px;
+        height: 70px;
+        background: url("../image/arrow-r.png") no-repeat center;
+        background-size: 38px 70px;
+      }
+      img {
+        display: block;
+        width: 378px;
+        height: 680px;
+        border: solid 1px transparent;/*no*/
+      }
+    }
+  }
+
+  .footer {
+    padding: 20px 0;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 1px;/*no*/
+      background-color: #ddd;
+    }
+  }
+  .banner-fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    height: 120px;
+    background: rgba(0,40,70,.8) url("../image/bbs-banner-fixed.png") no-repeat 40px center;
+    background-size: 273px 63px;
+    transition: all .3s;
+    a {
+      position: absolute;
+      right: 50px;
+      top: 50%;
+      margin-top: -30px;
+      width: 230px;
+      height: 60px;
+      background: #0d9ffa url("../image/banner-fixed-download.png") no-repeat center;
+      background-size: 130px 28px;
+      border-radius: 30px;
+    }
+  }
+
+}
+

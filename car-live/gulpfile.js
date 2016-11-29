@@ -6,7 +6,7 @@ var gulpReplace = require('gulp-replace');
 var gulpUglify = require('gulp-uglify');
 var gulpImage = require('gulp-image');
 var gulpConnect = require('gulp-connect');
-var gulpSass = require('gulp-sass');
+// var gulpSass = require('gulp-sass');
 var webpackStream = require('webpack-stream');
 var webpack = require('webpack');
 var gulpBabel = require('gulp-babel');
@@ -17,7 +17,7 @@ var gulpAutoprefixer = require('gulp-autoprefixer');
 var config = {
     //宏定义
     macro: {
-        '__VERSION': Date.now().toString(16)
+        '__VERSION': 0
     },
     //发布目录
     release: '../../../dist/2016/' + path.basename(__dirname) + '/',
@@ -47,13 +47,13 @@ var config = {
 };
 
 gulp.task('scss', function () {
-    return gulp.src('./scss/*.scss')
-        .pipe(gulpSass().on('error', gulpSass.logError))
-        .pipe(gulpAutoprefixer({
-            browsers: ['Android >= 4', 'iOS >= 7.1'],
-            cascade: false
-        }))
-        .pipe(gulp.dest('./css/'));
+    // return gulp.src('./scss/*.scss')
+    //     .pipe(gulpSass().on('error', gulpSass.logError))
+    //     .pipe(gulpAutoprefixer({
+    //         browsers: ['Android >= 4', 'iOS >= 7.1'],
+    //         cascade: false
+    //     }))
+    //     .pipe(gulp.dest('./css/'));
 });
 
 gulp.task('css', ['scss'], function () {

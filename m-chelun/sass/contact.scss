@@ -1,0 +1,51 @@
+@import "reset";
+@import "common";
+
+.container {
+  background-color: #ebebeb;
+  .banner {
+    height: 552px;
+    background: url("../image/contact-banenr.png") no-repeat center;
+    background-size: 750px 552px;
+  }
+  .contact-item {
+    padding: 90px 60px 76px;
+    background-color: #fff;
+    &.contact-1 {
+      margin-bottom: 20px;
+      border-bottom: solid 1px #ddd;/*no*/
+      h2 {
+        background: url("../image/contact-1.png") no-repeat left center;
+        background-size: 52px 52px;
+      }
+    }
+    &.contact-2 {
+      margin-bottom: 20px;
+      border-top: solid 1px #ddd;/*no*/
+      border-bottom: solid 1px #ddd;/*no*/
+      h2 {
+        background: url("../image/contact-2.png") no-repeat left center;
+        background-size: 52px 52px;
+      }
+    }
+    &.contact-3 {
+      border-top: solid 1px #ddd;/*no*/
+      h2 {
+        background: url("../image/contact-3.png") no-repeat left center;
+        background-size: 52px 52px;
+      }
+    }
+    h2 {
+      margin-bottom: 28px;
+      padding-left: 65px;
+      height: 52px;
+      line-height: 52px;
+      font-size: 40px;
+    }
+    p {
+      line-height: 56px;
+      font-size: 30px;
+      color: #666666;
+    }
+  }
+}

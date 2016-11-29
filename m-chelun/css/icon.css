@@ -1,0 +1,20 @@
+.icon {
+  display: inline-block;
+  background: no-repeat center center;
+  background-size: contain;
+  position: relative;
+}
+
+.icon-message {
+  width: .42rem;
+  height: .42rem;
+}
+
+.icon-index-more {
+  display: inline-block;
+  width: 0.28rem;
+  height: 0.466667rem;
+  background: url("./../image/icon-index-more.png") no-repeat center;
+  background-size: 0.28rem 0.466667rem;
+  vertical-align: -0.053333rem;
+}

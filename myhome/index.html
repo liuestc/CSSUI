@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>myHomePage</title>
+</head>
+<link rel="stylesheet" href="index.css">
+<!-- <link href="font-awesome.min.css" rel="stylesheet"> -->
+<body>
+	<div class="container">
+		<div class="bar">
+			<ul class='main-bar'>
+				<li class='part'><a><i class="fa fa-home fa-fw"></i>&nbsp;<span>Home</span></a></li>
+				<li class='part'><i class='fa fa-twitter fa-fw'></i>About</li>
+				<li class='part'>Portfolio</li>
+				<li class='part'>Contack</li>
+			</ul>
+		</div>
+		<div class="home ">
+			<p class='big-title'>Infinito Web Design Studio</p>
+			<p class="sub-title">where Awesomeness Brought To Life</p>
+
+			<div class="connect">
+				<ul>
+					<li class='connect-btn'><a href=''>Twitter</a></li>
+					<li class='connect-btn'><a href="">Github</a></li>
+					<li class='connect-btn'><a href=''>Linkedin</a></li>
+					<li class='connect-btn'><a href=''>freeCodeCamp</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="portfolio" id='portfolio'>
+			<p class="sub-title">where Awesomeness Brought To Life</p>
+
+			<div class="list">
+				<div class="port1">
+					<div class="mask">
+						<img src="icon1.jpg" alt=""/>
+						<div class="content">
+							<p class="intro">React Calculator</p>
+							<p class="skill">React SCSS JavaScript</p>
+						</div>	
+					</div>
+				</div>
+				<div class="port1">
+					<div class="mask">
+						<img src="icon1.jpg" alt=""/>
+						<div class="content">
+							<p class="intro">React Calculator</p>
+							<p class="skill">React SCSS JavaScript</p>
+						</div>	
+					</div>
+				</div>				
+			</div>
+		</div>		
+
+	</div>
+</body>
+<script src='../common/js/jquery.js'></script>
+<script>
+	$(function(){
+		// console.log($(".portfolio").offset())
+		$(window).on("scroll",function(){
+			var clientH=document.documentElement.clientHeight;
+			var scrollH=document.body.scrollTop;
+			if(clientH+scrollH>$(".list").offset().top){
+				// alert(111);
+				$(".list").addClass('show');
+			}
+		})
+	})
+</script>
+</html>

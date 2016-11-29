@@ -1,0 +1,205 @@
+@import "reset";
+@import "common";
+//@import "swiper";
+
+.container {
+  position: relative;
+  .banner {
+    overflow: hidden;
+    position: relative;
+    height: 1114px;
+    //height: 100%;
+    background: url("../image/kao-banner.png") no-repeat center;
+    background-size: cover;
+    h2 {
+      margin: 90px auto 0;
+      width: 497px;
+      height: 260px;
+      background: url("../image/kao-banner-title.png") no-repeat center;
+      background-size: 497px 262px;
+    }
+    .banner-btn-download {
+      position: absolute;
+      left: 50%;
+      bottom: 150px;
+      z-index: 10;
+      margin-left: -205px;
+      width: 410px;
+      height: 100px;
+      background: #10a2fb url("../image/download.png") no-repeat center;
+      background-size: 226px 48px;
+      border-radius: 50px;
+      box-shadow: inset 0 -2px 4px #008def;
+    }
+    .banner-btn-next {
+      position: absolute;
+      left: 50%;
+      bottom: 50px;
+      z-index: 10;
+      margin-left: -45px;
+      width: 90px;
+      height: 50px;
+      background: url("../image/next-blue.png") no-repeat center;
+      background-size: 89px 46px;
+      animation-name: next;
+      animation-duration: 0.8s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    @keyframes next {
+      0% {
+        transform: translateY(0);
+      }
+      25% {
+        transform: translateY(-4px);/*no*/
+      }
+      50% {
+        transform: translateY(0);
+      }
+      75% {
+        transform: translateY(4px);/*no*/
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .slide-title {
+    position: relative;
+    //padding-top: 130px;
+    //height: 210px;
+    height: 540px;
+    text-align: center;
+    li {
+      position: absolute;
+      left: 0;
+      top: 120px;
+      right: 0;
+      height: 394px;
+      color: #0099f8;
+      transition: all .3s;
+      opacity: 0;
+      &.active {
+        opacity: 1;
+      }
+      &:nth-child(1) {
+        background: url("../image/kao-slide-title-1.png") no-repeat center top;
+        background-size: 530px 394px;
+      }
+      &:nth-child(2) {
+        background: url("../image/kao-slide-title-2.png") no-repeat center top;
+        background-size: 530px 394px;
+      }
+      &:nth-child(3) {
+        background: url("../image/kao-slide-title-3.png") no-repeat center top;
+        background-size: 530px 394px;
+      }
+      &:nth-child(4) {
+        background: url("../image/kao-slide-title-4.png") no-repeat center top;
+        background-size: 530px 394px;
+      }
+      &:nth-child(5) {
+        background: url("../image/kao-slide-title-5.png") no-repeat center top;
+        background-size: 530px 394px;
+      }
+    }
+  }
+
+  .slide-content {
+    //overflow: hidden;
+    padding-top: 160px;
+    height: 412px;
+    background: url("../image/kao-slide.png") no-repeat center bottom;
+    background-size: 414px 534px;
+    .slide-content-inner {
+      position: relative;
+      margin: 0 auto;
+      width: 356px;
+      height: 412px;
+      //transition: box-shadow .3s;
+      //&[data-shadow="0"] {
+      //  box-shadow: 0 2px 14px rgba(0, 210, 5, .5);/*no*/
+      //}
+      //&[data-shadow="1"] {
+      //  box-shadow: 0 2px 14px rgba(0, 195, 255, .5);/*no*/
+      //}
+      //&[data-shadow="2"] {
+      //  box-shadow: 0 2px 14px rgba(255, 150, 0, .5);/*no*/
+      //}
+      //&[data-shadow="3"] {
+      //  box-shadow: 0 2px 14px rgba(255, 60, 0, .5);/*no*/
+      //}
+      //&[data-shadow="4"] {
+      //  box-shadow: 0 2px 14px rgba(180, 30, 255, .5);/*no*/
+      //}
+      .swiper-container {
+        width: 100%;
+        height: 100%;
+        border: solid 1px #c5c5c5;/*no*/
+        border-radius: 6px;
+        .swiper-slide {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .swiper-button-prev {
+        position: absolute;
+        top: 50%;
+        left: -120px;
+        margin-top: -35px;
+        width: 70px;
+        height: 70px;
+        background: url("../image/arrow-l.png") no-repeat center;
+        background-size: 38px 70px;
+      }
+      .swiper-button-next {
+        position: absolute;
+        top: 50%;
+        right: -120px;
+        margin-top: -35px;
+        width: 70px;
+        height: 70px;
+        background: url("../image/arrow-r.png") no-repeat center;
+        background-size: 38px 70px;
+      }
+      img {
+        display: block;
+        width: 356px;
+        height: 412px;
+      }
+    }
+  }
+
+  .footer {
+    padding: 20px 0;
+  }
+  .banner-fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    //transform: translateY(130px);
+    height: 120px;
+    background: rgba(0,40,70,.8) url("../image/kao-banner-fixed.png") no-repeat 40px center;
+    background-size: 310px 62px;
+    transition: all .3s;
+    //&.active {
+    //  transform: none;
+    //}
+    a {
+      position: absolute;
+      right: 50px;
+      top: 50%;
+      margin-top: -30px;
+      width: 230px;
+      height: 60px;
+      background: #0d9ffa url("../image/banner-fixed-download.png") no-repeat center;
+      background-size: 130px 28px;
+      border-radius: 30px;
+    }
+  }
+
+}
+

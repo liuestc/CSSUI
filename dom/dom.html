@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM操作</title>
+</head>
+<style>
+	*{
+		padding:0;
+		margin:0;
+	}
+	body{
+		margin:0 10%;
+	}
+
+	.select{
+		padding-bottom:30px;
+	}
+	table{
+		border-collapse:collapse;
+	}
+	table, th, td{
+  		border: 1px solid blue;
+  	}
+</style>
+<body>
+<div class="select">
+	<select name="" id="province">
+		<option value="0">北京</option>
+		<option value="1">上海</option>
+		<option value="2">广州</option>
+	</select>
+	<select name="" id="city">
+		<option value="">海定</option>
+	</select>
+</div>
+<div class="add">
+	<label for="name">姓名 <input type="text" id='name'></label>
+	<label for="age">年龄 <input type="text" id='age'></label>
+	<label for="femail">性别 <input type="text" id='femail'></label>
+	<button type="buttom" id='test'>添加用户</button>
+
+	<table id="table">
+		<tr>
+			<td>姓名</td><td>年龄</td><td>性别</td><td>操作</td>
+		</tr>
+	</table>
+</div>
+
+<select id="select2">
+    <option value="0">北京</option>
+    <option value="1">上海</option>
+    <option value="2">武汉</option>
+    <option value="3">南京</option>
+    <option value="4">广州</option>
+    <option value="5" selected="selected">深圳</option>
+</select>
+
+<div>
+    <fieldset id="checkboxGroup">
+        <legend>选择最喜欢的城市</legend>
+        <div><input type="checkbox" name="city" value="北京" /><span>北京</span></div>
+        <div><input type="checkbox" name="city" value="上海" /><span>上海</span></div>
+        <div><input type="checkbox" name="city" value="南京" /><span>南京</span></div>
+        <div><input type="checkbox" name="city" value="深圳" /><span>深圳</span></div>
+        <div><input type="checkbox" name="city" value="广州" /><span>广州</span></div>
+        <div><input type="checkbox" name="city" value="武汉" /><span>武汉</span></div>
+    </fieldset>
+</div>
+<div style="margin-top:20px;">
+    <button id="btnCheckbox1">获取选择的checkbox</button>
+    <button id="btnCheckbox2">选择深圳和广州</button>
+    <button id="btnCheckbox3">全选</button>
+    <button id="btnCheckbox4">全不选</button>
+    <button id="btnCheckbox5">反选</button>
+</div>
+
+</body>
+<script src='../common/js/jquery.js'></script>
+<script>
+var $group = $('#checkboxGroup');
+$('#btnCheckbox3').click(function(){
+
+    $group.find(':checkbox').prop('checked', true);
+});
+
+$('#btnCheckbox4').on('click',function(){
+    $group.find(':checkbox').prop('checked', false);
+})
+arr=[];
+$("#btnCheckbox1").on('click',function(){
+
+	 // $('#checkboxGroup').find(':checkbox:checked').each(function(){
+  //       arr.push($(this).val());
+  //   });
+  	console.log($group.find(':checkbox:checked'));
+	$group.find(':checkbox:checked').each(function(item){
+		arr.push($(this).val())
+	})
+	console.log(arr);
+})
+
+$("#btnCheckbox5").on('click',function(){
+	$group.find(":checkbox").each(function(){
+		// $(this).
+		$(this).prop("checked",!$(this).prop("checked"))
+	})
+})
+
+$("#select2").on('change',function(){
+	console.log($("#select2").val());
+	console.log($("#select2").children("option:selected").text());
+})
+	var cities=new Array();
+	cities[0]=new Array("海定","故宫","天安门");
+	cities[1]=new Array("徐汇","静安","闵行");
+	cities[2]=new Array("东莞","深圳","闸北");
+	$(function(){
+		var pro=$("#province");
+		var city=$("#city");
+		pro.on("change",function(){
+			city[0].options.length=0;
+			for(var i=0;i<cities[pro.val()].length;i++){
+				city.append(new Option(cities[pro.val()][i],cities[pro.val()][i]));
+			}
+
+		})
+		city.on('change',function(){
+			var protext=pro.children("option:selected").text();
+			var citytext=city.children("option:selected").text();
+			console.log(protext+citytext);
+		})
+
+		$("#test").on('click',function(){
+			var name=$("#name").val()
+			var age=$("#age").val()
+			var femail=$("#femail").val();
+			if(name&&age&&femail){
+				var TR="<tr><td>"+name+"</td><td>"+age+"</td><td>"+femail+"</td><td><span class='del'>删除</span></td></tr>"
+				$("#table").append(TR);
+				$("input").val("");//这里为什么不能清空input
+				
+				$(".del").on('click',function(){ //这里为什么不能绑定时间
+					var tr= $(this).parent().parent();
+					// alert(1);
+					console.log(tr);
+					alert(22);
+					tr.remove();
+				})
+				}
+				else{
+					alert("不能为空")
+				}			
+		})
+
+
+	})
+
+
+</script>
+</html>
