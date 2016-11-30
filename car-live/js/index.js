@@ -11,6 +11,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var $ = require('./zepto');
 var React = require('react');
 var ReactDOM = require('react-dom');
+//import('../css/index.css');
 
 var test = document.getElementById('test');
 var host = /h5.chelun.com/.test(window.location.host) ? '//chelun.eclicks.cn' : '//community.dev.chelun.com';
@@ -25,7 +26,8 @@ var Test = function (_React$Component) {
 
         _this.state = {
             topic: "",
-            user: ""
+            user: "",
+            post: ''
         };
         return _this;
     }
@@ -60,6 +62,8 @@ var Test = function (_React$Component) {
                     var id = 1;
                     var tid = res.data.tid;
 
+                    // console.log(res);
+
                     $.ajax({
                         type: 'GET',
                         url: host + '/topic/topic_get',
@@ -72,17 +76,51 @@ var Test = function (_React$Component) {
                         dataType: 'json',
                         success: function success(res) {
 
+                            data.topic = res.data.topic;
+                            data.user = res.data.user;
                             _this2.setState({
                                 topic: res.data.topic,
                                 user: res.data.user
                             });
-                            console.log(res);
                             // console.log(this.state.DATA.data.forum.affiche);
+                        }
+                    });
+
+                    var data = {
+                        topic: "",
+                        user: "",
+                        post: ""
+                    };
+
+                    var param = {
+                        platform: 'web',
+                        ac_token: "",
+                        tid: tid,
+                        limit: 8,
+                        desc: 1
+                    };
+                    //get Post
+                    $.ajax({
+                        type: 'POST',
+                        url: host + '/post/byctime',
+                        data: param,
+                        dataType: 'json',
+                        success: function success(res) {
+                            data.post = res.data.post;
+                            console.log(data.post);
+                            console.log(data.topic);
+                            console.log(data.user);
+                            _this2.setState({
+                                topic: data.topic,
+                                user: data.user,
+                                post: data.post
+                            });
+                            console.log(_this2.state);
                         }
                     });
                 },
                 error: function error() {
-                    console(hahh);
+                    console("error");
                 }
             });
         }
@@ -91,180 +129,73 @@ var Test = function (_React$Component) {
         value: function render() {
             return React.createElement(
                 'div',
-                { className: 'container' },
+                { className: 'bar', id: 'topic_id' },
+                React.createElement('img', { className: 'head-img topic', src: this.state.user.avatar }),
                 React.createElement(
-                    'div',
-                    { className: 'live-video' },
-                    React.createElement(
-                        'p',
-                        { className: 'left_ban' },
-                        React.createElement('img', { src: './img/left.jpg', id: 'live_left' })
-                    ),
-                    React.createElement(
-                        'p',
-                        { className: 'video_play' },
-                        React.createElement('img', { src: './img/live.jpg', id: 'live' })
-                    ),
-                    React.createElement(
-                        'p',
-                        { className: 'right_ban' },
-                        React.createElement('img', { src: './img/right.jpg', id: 'live_right' })
-                    )
+                    'span',
+                    { className: 'name', id: 'nick' },
+                    '\u6D4B\u8BD54.16-20'
                 ),
+                ' ',
                 React.createElement(
-                    'div',
-                    { className: 'middle' },
-                    React.createElement('div', { className: 'm-top' }),
-                    React.createElement(
-                        'div',
-                        { className: 'bar', id: 'topic_id' },
-                        React.createElement('img', { className: 'head-img topic', src: '' }),
-                        React.createElement('span', { className: 'name', id: 'nick' }),
-                        ' ',
-                        React.createElement('span', { className: 'lev' }),
-                        React.createElement('img', { className: 'car-img topic', src: '' })
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'content' },
-                        React.createElement('p', { className: 'title' }),
-                        React.createElement('p', { id: 'topic_content' }),
-                        React.createElement('p', { className: 'img', id: 'topic_img' }),
-                        React.createElement(
-                            'p',
-                            { className: 'footer' },
-                            React.createElement('span', { className: 'time', id: 'topic_time' }),
-                            React.createElement('span', { id: 'topic_address', className: 'local' }),
-                            React.createElement('span', { className: 'active' })
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'comment' },
-                        React.createElement(
-                            'p',
-                            { className: 'headline' },
-                            '\u8BC4\u8BBA'
-                        ),
-                        React.createElement('ul', { id: 'comment_list' }),
-                        React.createElement(
-                            'div',
-                            { className: 'more' },
-                            '\u67E5\u770B\u66F4\u591A\u8BC4\u8BBA'
-                        ),
-                        React.createElement(
-                            'div',
-                            { className: 'open-chelun' },
-                            React.createElement(
-                                'a',
-                                { href: 'http://chelun.com/url/rfcKLg' },
-                                '\u6253\u5F00\u8F66\u8F6E\u793E\u533A\uFF0C\u67E5\u770B\u66F4\u591A\u8BC4\u8BBA',
-                                React.createElement('span', { className: 'arrow' })
-                            )
-                        )
-                    ),
-                    React.createElement('div', { className: 'm-bottom' })
+                    'span',
+                    { className: 'lev' },
+                    '\u20225\u7EA7'
                 ),
-                React.createElement(
-                    'div',
-                    { className: 'footer-btns' },
-                    React.createElement(
-                        'div',
-                        { id: 'commit' },
-                        React.createElement('input', { type: 'text', id: 'writeMes', placeholder: '\u5199\u8BC4\u8BBA...', name: '' }),
-                        React.createElement(
-                            'span',
-                            { id: 'add_icon' },
-                            React.createElement(
-                                'a',
-                                { href: '#1' },
-                                React.createElement('img', { src: 'img/write.png' })
-                            )
-                        ),
-                        React.createElement(
-                            'span',
-                            { id: 'share' },
-                            React.createElement('img', { src: 'imgshare.png' })
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'download' },
-                        React.createElement(
-                            'p',
-                            { className: 'icon' },
-                            React.createElement('img', { src: 'img/icon.png' })
-                        ),
-                        React.createElement(
-                            'div',
-                            { className: 'down-mid' },
-                            React.createElement(
-                                'p',
-                                { className: 'app-name' },
-                                '\u8F66\u8F6E\u793E\u533A'
-                            ),
-                            React.createElement(
-                                'p',
-                                { className: 'down-sub' },
-                                '\u4E0B\u8F7D\u53C2\u4E0E\u66F4\u591A\u8BA8\u8BBA'
-                            )
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'down-btn' },
-                            React.createElement(
-                                'a',
-                                { href: 'http://chelun.com/url/rfcKLg' },
-                                '\u4E0B\u8F7DAPP'
-                            )
-                        ),
-                        React.createElement(
-                            'span',
-                            { id: 'close' },
-                            React.createElement('img', { src: './img/close.png' })
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'reply' },
-                        React.createElement(
-                            'div',
-                            { className: 'reply-head' },
-                            React.createElement('span', { className: 'cancel' }),
-                            React.createElement(
-                                'span',
-                                { id: 'reply_floor' },
-                                '\u56DE\u590D\u697C\u4E3B'
-                            ),
-                            React.createElement(
-                                'span',
-                                { className: 'push', id: 'push_sub' },
-                                '\u53D1\u8868'
-                            )
-                        ),
-                        React.createElement(
-                            'div',
-                            { className: 'reply-input' },
-                            React.createElement('textarea', { name: '', id: 'writeText', autofocus: true, placeholder: '\u8BF7\u8F93\u5165\u56DE\u590D\u5185\u5BB9' }),
-                            React.createElement('div', { className: 'cityname' })
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'success' },
-                    React.createElement('img', { src: './img/succ.png' }),
-                    React.createElement(
-                        'span',
-                        null,
-                        '\u56DE\u590D\u6210\u529F'
-                    )
-                )
+                React.createElement('img', { className: 'car-img topic', src: this.state.user.small_logo })
             );
         }
     }]);
 
     return Test;
+}(React.Component);
+
+var ListItem = function (_React$Component2) {
+    _inherits(ListItem, _React$Component2);
+
+    function ListItem() {
+        _classCallCheck(this, ListItem);
+
+        return _possibleConstructorReturn(this, (ListItem.__proto__ || Object.getPrototypeOf(ListItem)).apply(this, arguments));
+    }
+
+    _createClass(ListItem, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'ul',
+                null,
+                this.props.data.map(function (item, index) {
+                    React.createElement(Li, { content: item, key: index });
+                })
+            );
+        }
+    }]);
+
+    return ListItem;
+}(React.Component);
+
+var Li = function (_React$Component3) {
+    _inherits(Li, _React$Component3);
+
+    function Li() {
+        _classCallCheck(this, Li);
+
+        return _possibleConstructorReturn(this, (Li.__proto__ || Object.getPrototypeOf(Li)).apply(this, arguments));
+    }
+
+    _createClass(Li, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'li',
+                null,
+                this.props.content.content
+            );
+        }
+    }]);
+
+    return Li;
 }(React.Component);
 
 ReactDOM.render(React.createElement(Test, null), test);

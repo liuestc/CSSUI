@@ -1,16 +1,21 @@
 var $ = require('./zepto');
 var React=require('react');
 var ReactDOM=require('react-dom');
+ //import('../css/index.css');
 
 var test=document.getElementById('test');
 const host = /h5.chelun.com/.test(window.location.host)?'//chelun.eclicks.cn':'//community.dev.chelun.com';
 
 class Test extends React.Component{
+
+
+
     constructor(){
         super();
         this.state = {
             topic:"",
-            user:""
+            user:"",
+            post:''
         };
     }
 
@@ -29,6 +34,8 @@ class Test extends React.Component{
     }
 
     componentDidMount(){
+ 
+
         $.ajax({
         url:'https://dev-promotion.chelun.com/GuangzhouCarShow/index?id=1',
         type:'GET',
@@ -36,6 +43,9 @@ class Test extends React.Component{
 
         var id=1;
         var tid=res.data.tid;
+
+
+        // console.log(res);
 
         $.ajax({
                 type: 'GET',
@@ -49,113 +59,92 @@ class Test extends React.Component{
                 dataType: 'json',
                 success:(res)=>{
 
-                    
+                data.topic=res.data.topic;
+                data.user=res.data.user;                   
                     this.setState({
                         topic:res.data.topic,
-                        user:res.data.user
+                        user:res.data.user,
                     });
-                    console.log(res)
                     // console.log(this.state.DATA.data.forum.affiche);
                 }
              })
+
+            var data={
+                topic:"",
+                user:"",
+                post:""
+             }   
+
+            let param = {
+                platform: 'web',
+                ac_token: "",
+                tid: tid,
+                limit: 8,
+                desc:1
+            };
+            //get Post
+            $.ajax({
+                    type: 'POST',
+                    url: host+'/post/byctime',
+                    data: param,
+                    dataType: 'json',
+                    success:(res)=>{
+                    data.post=res.data.post;   
+                    console.log(data.post); 
+                    console.log(data.topic);
+                    console.log(data.user);  
+                        this.setState({
+                            topic:data.topic,
+                            user:data.user,
+                            post:data.post
+                        });
+                        console.log(this.state);
+                    }
+                 })        
                
             },
         error:function(){
-                console(hahh)
+                console("error")
             }
         })
     }
 
+
     
     render(){
         return (
-            <div className="container">
-      <div className="live-video">
-        <p className="left_ban">
-            <img src="./img/left.jpg" id="live_left"/>
-        </p>
-        <p className="video_play">
-            <img src="./img/live.jpg" id="live"/>
-        </p>
-        <p className="right_ban">
-            <img src="./img/right.jpg" id="live_right"/>
-        </p>
-    </div>
-    <div className="middle">
-        <div className="m-top"></div>
         <div className="bar" id="topic_id">
-            <img className="head-img topic" src=""/>
-            <span className="name" id="nick"></span> <span className="lev"></span>
-            <img className="car-img topic" src=""/>
+            <img className="head-img topic" src={this.state.user.avatar}/>
+            <span className="name" id="nick">测试4.16-20</span> <span className="lev">•5级</span>
+            <img className="car-img topic" src={this.state.user.small_logo}/>
+
         </div>
-        <div className="content">
-            <p className="title"></p>
-            <p id="topic_content"></p>
-            <p className="img" id="topic_img"/>
-            <p className="footer">
-                <span className="time" id="topic_time"></span>
-                <span id="topic_address" className="local"></span>
-                <span className="active"></span>
-            </p>
-        </div>
-
-        <div className="comment">
-            <p className="headline">评论</p>
-            <ul id="comment_list"></ul>
-
-
-            <div className="more">查看更多评论</div>
-            <div className="open-chelun">
-                <a href="http://chelun.com/url/rfcKLg">打开车轮社区，查看更多评论
-                    <span className="arrow"></span>
-                </a>
-            </div>
-        </div>
-
-        <div className="m-bottom"></div>
-    </div>
-    <div className="footer-btns">
-        <div id="commit">
-            <input type="text" id="writeMes" placeholder="写评论..." name=""/>
-            <span id="add_icon"><a href="#1"><img src="img/write.png"/></a></span>
-            <span id="share"><img src="imgshare.png"/></span>
-        </div>
-
-        <div className="download">
-            <p className="icon"><img src="img/icon.png"/></p>
-            <div className="down-mid">
-                <p className="app-name">车轮社区</p>
-                <p className="down-sub">下载参与更多讨论</p>
-            </div>
-            <p className="down-btn"><a href="http://chelun.com/url/rfcKLg">下载APP</a></p>
-            <span id="close">
-                <img src="./img/close.png"/>
-            </span>
-        </div>
-
-        <div className="reply">
-            <div className="reply-head">
-                <span className="cancel"></span>
-                <span id="reply_floor">回复楼主</span>
-                <span className="push" id="push_sub">发表</span>
-            </div>
-            <div className="reply-input">
-                <textarea name="" id="writeText" autofocus placeholder="请输入回复内容"></textarea>
-                <div className="cityname"></div>
-            </div>
-        </div>
-    </div>
-
-    <div className="success">
-        <img src="./img/succ.png"/>
-        <span>回复成功</span>
-    </div>
-
-</div>
-
             )
     }
 }
+
+
+
+class ListItem extends React.Component {
+    render(){
+        return (
+            <ul>
+                {this.props.data.map(function(item,index){
+                   <Li content={item} key={index}/>
+                })}
+            </ul>
+            )
+    }
+}
+
+class Li extends React.Component{
+    render(){
+    return (
+        <li>{this.props.content.content}</li>
+        )
+}
+}
+
 ReactDOM.render(<Test/>,test);
 // export default function()
 
